@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Demo – Exelytix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #00ff80;
+      --secondary-color: #0d0d0d;
+      --text-color: #e6e6e6;
+      --card-bg: #121212;
+      --font-main: 'Orbitron', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-main);
+    }
+
+    body {
+      background: radial-gradient(circle at top, #000, #050505 70%);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    /* 3D Matrix background */
+    canvas#matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: black;
+    }
+
+    /* Enhanced Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(0, 255, 128, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 128, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  backdrop-filter: blur(6px);
+  transition: background 0.4s ease;
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 60vh; /* reduced from 80vh */
+  padding: 1.5rem 1rem; /* less padding */
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+
+
+/* Logo + Brand */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo-container img {
+  height: 48px;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 128, 0.4));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo-container img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(0, 255, 128, 0.7));
+}
+
+.brand-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #00ff80, #00e0a0, #00ff80);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: neonShift 5s ease infinite;
+  text-shadow: 0 0 10px rgba(0,255,128,0.4);
+}
+
+@keyframes neonShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Navigation Links */
+header nav a {
+  color: var(--text-color);
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+header nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px rgba(0,255,128,0.5);
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.2rem;
+  }
+
+  .brand-name {
+    font-size: 1.5rem;
+  }
+}
+
+
+    /* Feature Cards Section */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 4rem 2rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 255, 128, 0.2);
+      border-radius: 20px;
+      width: 250px;
+      text-align: center;
+      padding: 2rem 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
+    }
+
+    .feature-card i {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: #bdbdbd;
+      font-size: 0.9rem;
+    }
+
+    /* Demo Form Section */
+    /* Enhanced Demo Form */
+.demo-form {
+  position: relative;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 20px;
+  max-width: 650px;
+  margin: 5rem auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.1),
+              inset 0 0 25px rgba(0, 255, 128, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px rgba(0, 255, 128, 0.25);
+}
+
+.demo-form h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.demo-form .demo-subtitle {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.demo-form .form-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.demo-form input,
+.demo-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(0, 255, 128, 0.2);
+  border-radius: 12px;
+  background: rgba(20, 20, 20, 0.7);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.demo-form input:focus,
+.demo-form textarea:focus {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.4);
+  background: rgba(25, 25, 25, 0.9);
+}
+
+.demo-form button {
+  background: linear-gradient(90deg, #00ff80, #00cc66);
+  color: black;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.demo-form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.4);
+}
+
+/* Decorative neon edge */
+.demo-form::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(45deg, transparent, rgba(0,255,128,0.2), transparent);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+      
+    .demo-form input,
+    .demo-form textarea {
+      width: 100%;
+      padding: 0.9rem;
+      margin: 0.7rem 0;
+      border: none;
+      border-radius: 10px;
+      background: #1a1a1a;
+      color: var(--text-color);
+      outline: none;
+    }
+
+    .demo-form button {
+      background: var(--primary-color);
+      color: black;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .demo-form button:hover {
+      background: #00cc66;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: var(--text-color);
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(0, 255, 128, 0.2);
+    }
+
+    footer .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 2rem;
+    }
+
+    footer h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    footer ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    footer .socials i {
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      transition: 0.3s;
+    }
+
+    footer .socials i:hover {
+      color: white;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+    .socials a {
+  color: var(--primary-color);
+  margin-right: 1rem;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.socials a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px var(--primary-color);
+  transform: scale(1.2);
+}
+
+  </style>
+</head>
+<body>
+
+  <canvas id="matrix-bg"></canvas>
+
+<header>
+  <div class="logo-container">
+    <img src="logo.png" alt="Exelytix Logo">
+    <span class="brand-name">Exelytix</span>
+  </div>
+  <nav>
+    <a href="Home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<section class="hero">
+<h1>Book Your Personalized Demo</h1>
+    <p>Experience the future of administrative intelligence. Schedule your tailored demo and explore how Exelytix can optimize your executive workflows.</p>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <i class="fa-solid fa-calendar"></i>
+      <h3>PERSONALIZED DEMO</h3>
+      <p>Customized presentation based on your specific industry and requirements.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-clock"></i>
+      <h3>30-MINUTE SESSION</h3>
+      <p>Focused, efficient demonstration that respects your valuable time.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-user-group"></i>
+      <h3>EXPERT CONSULTATION</h3>
+      <p>Direct access to our team of executive support specialists.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-star"></i>
+      <h3>IMMEDIATE INSIGHTS</h3>
+      <p>Walk away with actionable strategies for operational improvement.</p>
+    </div>
+  </section>
+
+  <section class="demo-form">
+    <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Request a Demo</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Company Name" required>
+      <textarea rows="4" placeholder="Your Message or Requirements"></textarea>
+      <button type="submit">Submit Request</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>Exelytix</h3>
+        <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+        <div class="socials">
+  <a href="https://x.com/ushodharraju" target="_blank" aria-label="Twitter">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="https://www.linkedin.com/company/exelytix" target="_blank" aria-label="LinkedIn">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com/exelytix" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Who We Are</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Leadership</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Product</h3>
+        <ul>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Request Demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Newsletter</h3>
+        <p>Stay updated with the latest AI innovations and insights.</p>
+        <input type="email" placeholder="your@email.com" style="padding:0.7rem;border-radius:10px;border:none;width:80%;margin-top:0.5rem;">
+      </div>
+    </div>
+    <p class="copyright">© 2025 Exelytix. All rights reserved. <a href="#" style="color:var(--primary-color)">Privacy Policy</a></p>
+  </footer>
+
+  <!-- Matrix Effect Background -->
+  <script>
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = '01EXELYTIXAI'.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00ff80';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 35);
+  </script>
+</body>
+</html>
