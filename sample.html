@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exelytix - Administrative Intelligence for Executives</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #00ff00;
+            --neon-green-dark: #00cc00;
+            --neon-green-light: #66ff66;
+            --neon-green-glow: rgba(0, 255, 0, 0.5);
+            --black: #000000;
+            --dark-gray: #111111;
+            --medium-gray: #222222;
+            --light-gray: #333333;
+            --text: #ffffff;
+            --text-muted: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 3D BACKGROUND */
+        .background-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            background: var(--black);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green-glow);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            background: rgba(0, 0, 0, 0.98);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green-glow), 0 0 20px var(--neon-green-glow);
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 15px var(--neon-green-glow), 0 0 30px var(--neon-green-glow);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--black);
+            min-width: 220px;
+            box-shadow: 0 4px 20px var(--neon-green-glow);
+            border: 1px solid var(--medium-gray);
+            border-radius: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            padding: 8px 0;
+            z-index: 999;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid var(--dark-gray);
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--dark-gray);
+            color: var(--neon-green-light);
+            border-left: 3px solid var(--neon-green);
+            padding-left: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--neon-green);
+            color: var(--black);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 15px var(--neon-green-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--neon-green-glow);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--neon-green);
+        }
+
+        .btn-outline:hover {
+            background: var(--neon-green);
+            color: var(--black);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-green-glow), 0 0 30px var(--neon-green-glow);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* SECTIONS */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 2rem auto 3rem;
+        }
+
+        .why-choose {
+            padding: 100px 0;
+            background: rgba(17, 17, 17, 0.8);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(145deg, var(--medium-gray) 0%, var(--light-gray) 100%);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px var(--neon-green-glow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px var(--neon-green-glow);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover .feature-icon {
+            transform: scale(1.2);
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .services {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, var(--dark-gray) 0%, var(--medium-gray) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px var(--neon-green-glow);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            text-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin: 1.5rem 0;
+            text-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        .service-card .btn {
+            margin-top: auto;
+        }
+
+        .cta {
+            padding: 100px 0;
+            background: rgba(17, 17, 17, 0.8);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-green-glow);
+            text-transform: uppercase;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(17, 17, 17, 0.95);
+            padding: 60px 0 20px;
+            border-top: 2px solid var(--neon-green);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
+        .footer-about {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-heading {
+            color: var(--neon-green);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green-glow);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info i {
+            color: var(--neon-green);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            color: var(--neon-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--neon-green);
+            color: var(--black);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 0 20px var(--neon-green-glow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+            color: var(--text-muted);
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--dark-gray);
+            z-index: 1001;
+            transition: right 0.4s ease;
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            padding: 12px 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--neon-green);
+            padding-left: 10px;
+        }
+
+        .mobile-nav .btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .features, .service-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header-container {
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature, .service-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-3d">
+        <canvas id="canvas3d"></canvas>
+    </div>
+
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="logo">EXELYTIX</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#about">ABOUT ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#administrative">What We Do</a></li>
+                            <li><a href="#intelligence">Who We Are</a></li>
+                            <li><a href="#high-level">Leadership</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#pricing">PRICING</a></li>
+                    <li><a href="#careers">CAREERS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <li><a href="#book-demo" class="btn">BOOK A DEMO</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#services">SERVICES</a></li>
+            <li><a href="#pricing">PRICING</a></li>
+            <li><a href="#careers">CAREERS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+            <li><a href="#book-demo" class="btn">BOOK A DEMO</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>ADMINISTRATIVE<br>INTELLIGENCE<br>FOR THE HIGH LEVEL<br>EXECUTIVES</h1>
+            <p>Advanced AI-powered executive support services designed for high-level executives who demand operational excellence and strategic clarity in the digital age.</p>
+            <div class="hero-buttons">
+                <a href="#book-demo" class="btn">BOOK A DEMO</a>
+                <a href="#services" class="btn btn-outline">VIEW SERVICES</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose" id="about">
+        <div class="container">
+            <h2 class="section-title">WHY CHOOSE EXELYTIX?</h2>
+            <p class="section-subtitle">We combine cutting-edge AI technology with human expertise to deliver unparalleled executive support services.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-POWERED INTELLIGENCE</h3>
+                    <p>Leverage cutting-edge artificial intelligence for content creation, data analysis, and predictive business forecasting.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>PRECISION-DRIVEN</h3>
+                    <p>Every service is meticulously crafted with data-driven insights to ensure maximum efficiency and accuracy.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>FUTURE-READY</h3>
+                    <p>Advanced solutions designed for the digital transformation era with scalable, innovative approaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">OUR CORE SERVICES</h2>
+            <p class="section-subtitle">From administrative support to advanced analytics, we provide comprehensive solutions for executive excellence.</p>
+            
+            <div class="service-cards">
+                <div class="service-card">
+                    <h3>DATA ANALYSIS & REPORTING</h3>
+                    <p>Transform raw data into actionable business insights with our advanced analytics platform.</p>
+                    <div class="service-price">Starting at $35/hour</div>
+                    <a href="#" class="btn btn-outline">LEARN MORE</a>
+                </div>
+                
+                <div class="service-card">
+                    <h3>EXECUTIVE SUPPORT</h3>
+                    <p>Comprehensive administrative and executive assistance tailored to your specific needs.</p>
+                    <div class="service-price">Starting at $20/hour</div>
+                    <a href="#" class="btn btn-outline">LEARN MORE</a>
+                </div>
+                
+                <div class="service-card">
+                    <h3>AI-POWERED CONTENT MANAGEMENT</h3>
+                    <p>Intelligent content creation, optimization, and distribution powered by cutting-edge AI.</p>
+                    <div class="service-price">Starting at $25/hour</div>
+                    <a href="#" class="btn btn-outline">LEARN MORE</a>
+                </div>
+                
+                <div class="service-card">
+                    <h3>FINANCIAL OVERSIGHT</h3>
+                    <p>Professional bookkeeping and financial oversight services for business growth.</p>
+                    <div class="service-price">Starting at $40/hour</div>
+                    <a href="#" class="btn btn-outline">LEARN MORE</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn">VIEW ALL SERVICES</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="book-demo">
+        <div class="container">
+            <h2>READY TO TRANSFORM YOUR OPERATIONS?</h2>
+            <p>Join visionary executives who trust Exelytix to bring clarity, control, and cutting-edge efficiency to their business operations.</p>
+            <a href="#" class="btn">SCHEDULE YOUR DEMO TODAY</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">EXELYTIX</div>
+                    <p class="footer-about">Administrative Intelligence for the Future</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/ushodharraju" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/exelytix/" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/exelytix/" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">COMPANY</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">What We Do</a></li>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">SERVICES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">All Services</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Book a Demo</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>exelytix@gmail.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+919392972245</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 10AM-8PM</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Contact Us</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>2025 EXELYTIX. All rights reserved. | Built with <i class="fas fa-heart" style="color: var(--neon-green);"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        overlay.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // 3D Background Animation
+        const canvas = document.getElementById('canvas3d');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Enhanced Particle system with more variety
+        class Particle {
+            constructor() {
+                this.reset();
+                this.type = Math.floor(Math.random() * 3); // Different types of particles
+            }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.z = Math.random() * 2000;
+                this.size = Math.random() * 3 + 1;
+                this.speedZ = Math.random() * 3 + 1;
+                this.hue = 120 + Math.random() * 40; // Green hue variation
+            }
+            
+            update() {
+                this.z -= this.speedZ;
+                if (this.z <= 0) this.reset();
+            }
+            
+            draw() {
+                const scale = 1000 / (1000 + this.z);
+                const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
+                const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
+                const size = this.size * scale;
+                
+                const opacity = 1 - this.z / 2000;
+                
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${opacity})`;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = `hsla(${this.hue}, 100%, 50%, 0.8)`;
+                
+                if (this.type === 0) {
+                    // Circle particles
+                    ctx.beginPath();
+                    ctx.arc(x2d, y2d, size, 0, Math.PI * 2);
+                    ctx.fill();
+                } else if (this.type === 1) {
+                    // Square particles
+                    ctx.fillRect(x2d - size/2, y2d - size/2, size, size);
+                } else {
+                    // Triangle particles
+                    ctx.beginPath();
+                    ctx.moveTo(x2d, y2d - size);
+                    ctx.lineTo(x2d - size, y2d + size);
+                    ctx.lineTo(x2d + size, y2d + size);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+            }
+        }
+
+        // Enhanced Network lines with more connections
+        class NetworkNode {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.z = Math.random() * 1000;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.vz = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 4 + 2;
+                this.hue = 120 + Math.random() * 40;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.z += this.vz;
+                
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                if (this.z < 0 || this.z > 1000) this.vz *= -1;
+            }
+            
+            draw() {
+                const scale = 800 / (800 + this.z);
+                const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
+                const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
+                const radius = this.radius * scale;
+                
+                const opacity = 0.8 - this.z / 2000;
+                
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${opacity})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `hsla(${this.hue}, 100%, 50%, 0.8)`;
+                ctx.beginPath();
+                ctx.arc(x2d, y2d, radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Enhanced Rotating cubes with more 3D effects
+        class RotatingCube {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.z = Math.random() * 1500;
+                this.size = Math.random() * 60 + 30;
+                this.rotation = { x: 0, y: 0, z: 0 };
+                this.rotationSpeed = {
+                    x: (Math.random() - 0.5) * 0.03,
+                    y: (Math.random() - 0.5) * 0.03,
+                    z: (Math.random() - 0.5) * 0.03
+                };
+                this.hue = 120 + Math.random() * 40;
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+            
+            update() {
+                this.rotation.x += this.rotationSpeed.x;
+                this.rotation.y += this.rotationSpeed.y;
+                this.rotation.z += this.rotationSpeed.z;
+                this.z -= 1;
+                if (this.z <= 0) {
+                    this.z = 1500;
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                }
+            }
+            
+            draw() {
+                const scale = 800 / (800 + this.z);
+                const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
+                const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
+                const size = this.size * scale;
+                
+                ctx.save();
+                ctx.translate(x2d, y2d);
+                
+                const s = size / 2;
+                const vertices = [
+                    [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
+                    [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s]
+                ];
+                
+                const rotated = vertices.map(v => {
+                    let [x, y, z] = v;
+                    
+                    // Rotate X
+                    let cosX = Math.cos(this.rotation.x);
+                    let sinX = Math.sin(this.rotation.x);
+                    [y, z] = [y * cosX - z * sinX, y * sinX + z * cosX];
+                    
+                    // Rotate Y
+                    let cosY = Math.cos(this.rotation.y);
+                    let sinY = Math.sin(this.rotation.y);
+                    [x, z] = [x * cosY + z * sinY, -x * sinY + z * cosY];
+                    
+                    // Rotate Z
+                    let cosZ = Math.cos(this.rotation.z);
+                    let sinZ = Math.sin(this.rotation.z);
+                    [x, y] = [x * cosZ - y * sinZ, x * sinZ + y * cosZ];
+                    
+                    return [x, y, z];
+                });
+                
+                ctx.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.opacity})`;
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = `hsla(${this.hue}, 100%, 50%, 0.7)`;
+                
+                const edges = [
+                    [0,1],[1,2],[2,3],[3,0],  // back face
+                    [4,5],[5,6],[6,7],[7,4],  // front face
+                    [0,4],[1,5],[2,6],[3,7]   // connecting edges
+                ];
+                
+                edges.forEach(edge => {
+                    const [i1, i2] = edge;
+                    const [x1, y1, z1] = rotated[i1];
+                    const [x2, y2, z2] = rotated[i2];
+                    
+                    // Simple perspective projection
+                    const scale1 = 500 / (500 + z1);
+                    const scale2 = 500 / (500 + z2);
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(x1 * scale1, y1 * scale1);
+                    ctx.lineTo(x2 * scale2, y2 * scale2);
+                    ctx.stroke();
+                });
+                
+                ctx.restore();
+            }
+        }
+
+        // Create objects with more variety
+        const particles = Array.from({ length: 300 }, () => new Particle());
+        const networkNodes = Array.from({ length: 50 }, () => new NetworkNode());
+        const cubes = Array.from({ length: 15 }, () => new RotatingCube());
+
+        // Animation loop
+        function animate() {
+            // Clear canvas with solid black background
+            ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw network connections with depth
+            for (let i = 0; i < networkNodes.length; i++) {
+                for (let j = i + 1; j < networkNodes.length; j++) {
+                    const dx = networkNodes[i].x - networkNodes[j].x;
+                    const dy = networkNodes[i].y - networkNodes[j].y;
+                    const dz = networkNodes[i].z - networkNodes[j].z;
+                    const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                    
+                    if (distance < 200) {
+                        const opacity = (1 - distance / 200) * 0.2;
+                        ctx.strokeStyle = `hsla(120, 100%, 50%, ${opacity})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.shadowBlur = 5;
+                        ctx.shadowColor = 'rgba(0, 255, 0, 0.3)';
+                        
+                        // Calculate 2D positions with perspective
+                        const scale1 = 800 / (800 + networkNodes[i].z);
+                        const x1 = (networkNodes[i].x - canvas.width / 2) * scale1 + canvas.width / 2;
+                        const y1 = (networkNodes[i].y - canvas.height / 2) * scale1 + canvas.height / 2;
+                        
+                        const scale2 = 800 / (800 + networkNodes[j].z);
+                        const x2 = (networkNodes[j].x - canvas.width / 2) * scale2 + canvas.width / 2;
+                        const y2 = (networkNodes[j].y - canvas.height / 2) * scale2 + canvas.height / 2;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            // Update and draw all objects
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            networkNodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+            
+            cubes.forEach(cube => {
+                cube.update();
+                cube.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Start animation
+        animate();
+    </script>
+</body>
+</html>

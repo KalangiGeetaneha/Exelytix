@@ -54,13 +54,57 @@ nav a:hover {
 }
 
 /* ========= DROPDOWN ========= */
-.dropdown {
-  position: relative;
+* General styles for the navbar */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+li {
+  position: relative;
+  display: inline-block; /* Makes the dropdown horizontal */
+}
+
+
+
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: flex; /* Use flex for text + arrow alignment */
+  align-items: center; /* Vertically center text and arrow */
+  justify-content: space-between; /* Space between text and arrow */
+  padding: 10px 20px;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Show dropdown on hover */
+li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+  display: block;
+  
+}
+
+
+
+
+
+
+
+
+
 
 /* Dropdown link: ensures arrow + text aligned horizontally */
 .dropdown-link {
-  display: flex;
+  position: relative;
+  display: inline-block;
   align-items: center;
   gap: 0.5rem; /* spacing between text and arrow */
   cursor: pointer;
@@ -122,7 +166,7 @@ nav a:hover {
   color: var(--text-light);
   text-decoration: none;
   transition: 0.25s ease;
-  padding: 0rem 1rem;
+  padding:0.55rem;
    line-height: 1;
 }
 
@@ -736,227 +780,215 @@ background-color: #05DF7240;
   }
 }
 
-/* 🌌 Background - Matrix Animated */
+/* ===========================
+   CORE SERVICES SECTION
+=========================== */
+
 .core-services {
-  position: relative;
-  padding: 100px 6%;
-  background: radial-gradient(circle at top, #001000, #000);
-  overflow: hidden;
-  color: #fff;
-}
-
-.core-services::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(0, 255, 70, 0.05) 0px,
-    rgba(0, 255, 70, 0.05) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  animation: matrixFlow 8s linear infinite;
-  opacity: 0.2;
-  z-index: 0;
-}
-
-@keyframes matrixFlow {
-  from { background-position-y: 0; }
-  to { background-position-y: 100%; }
-}
-
-/* 🌌 Matrix Background */
-.core-services {
-  position: relative;
-  padding: 100px 6%;
-  background: radial-gradient(circle at top, #001000, #000);
-  overflow: hidden;
-  color: #fff;
-}
-
-.core-services::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(0, 255, 70, 0.05) 0px,
-    rgba(0, 255, 70, 0.05) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  animation: matrixFlow 8s linear infinite;
-  opacity: 0.2;
-  z-index: 0;
-}
-
-@keyframes matrixFlow {
-  from { background-position-y: 0; }
-  to { background-position-y: 100%; }
-}
-
-/* 🔰 Section Title */
-.section-title {
+  padding: 6rem 5%;
   text-align: center;
-  font-size: 3rem;
-  margin-bottom: 70px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 1;
-}
-.section-title span {
-  color: #00ff88;
 }
 
-/* 🧩 Grid Layout */
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3rem;
+}
+
+.section-title span {
+  color: var(--green);
+}
+
+/* ✅ MAKE 2×2 GRID LAYOUT **/
 .service-cards {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "large small1 small2"
-    "large little-small explore";
-  gap: 40px;
-  position: relative;
-  z-index: 1;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 2.5rem;
+  justify-items: center;
 }
 
-/* 🔳 Card Area Mapping */
-.service-card.large { grid-area: large; }
-.service-card:nth-child(2) { grid-area: small1; }
-.service-card:nth-child(3) { grid-area: small2; }
-.service-card.little-small { grid-area: little-small; }
-.service-card.explore { grid-area: explore; }
-
-/* 🧱 General Card Styling */
-.service-card {
-  background: linear-gradient(135deg, rgba(0, 255, 100, 0.1), rgba(0, 0, 0, 0.8));
-  border: 1.5px solid rgba(0, 255, 100, 0.3);
-  box-shadow: 0 0 25px rgba(0, 255, 100, 0.2);
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  transition: all 0.4s ease;
-  backdrop-filter: blur(8px);
-  transform-style: preserve-3d;
-  perspective: 800px;
-}
-
-/* 🖼️ Card Image Sizes */
-.service-card img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin-bottom: 20px;
-  transition: transform 0.5s ease;
-}
-
-/* ✅ Larger Image in First Card */
-.service-card.large img {
-  width: 220px;
-  height: 220px;
-  margin-bottom: 25px;
-}
-
-/* ✴️ Adjust Specific Card Heights */
+/* ✅ Remove all spanning */
+.service-card.large,
+.service-card.small,
 .service-card.little-small {
-  height: 480px; /* Taller 4th card */
+  grid-column: span 1 !important;
+  grid-row: span 1 !important;
 }
+
+/* ✅ Explore button spans full width */
 .service-card.explore {
-  height: 350px; /* Smaller Explore card */
+  grid-column: span 2;
+  text-align: center;
+  border-style: dashed;
+  padding: 2rem 0;
 }
 
-/* Headings & Text */
+/* ===========================
+   CARD BASE STYLE
+=========================== */
+
+.service-card {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1.5px solid rgba(0, 255, 153, 0.35);
+  border-radius: 22px;
+  padding: 2rem 1.6rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 8px rgba(0, 255, 153, 0.2);
+
+  min-height: 480px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--green);
+  box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+}
+
+/* ===========================
+   IMAGES FIXED HEIGHT
+=========================== */
+
+.service-card img {
+  width: 90%;                 /* bigger width */
+  height: 220px;              /* increased height */
+  object-fit: contain;
+  object-position: center;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 153, 0.35));
+}
+
+
+/* ===========================
+   TEXT STYLING
+=========================== */
+
 .service-card h3 {
-  font-size: 1.5rem;
-  color: #00ff88;
-  margin-bottom: 15px;
-  letter-spacing: 0.5px;
-}
-.service-card p {
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 25px;
+  color: var(--green);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
 }
 
-/* Footer Section */
+.service-card p {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 90px;
+  margin-bottom: 1.5rem;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1rem;
-  color: #aaa;
-}
-.card-footer button {
-  background: transparent;
-  border: 1px solid #00ff88;
-  color: #00ff88;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.card-footer button:hover {
-  background: #00ff88;
-  color: #000;
-  transform: scale(1.05);
+  width: 100%;
 }
 
-/* 🌀 Hover 3D Glow Effect */
-.service-card:hover {
-  transform: translateY(-12px) rotateX(5deg) rotateY(3deg);
-  box-shadow: 0 0 40px rgba(0, 255, 100, 0.6);
-  border-color: #00ffcc;
-}
-.service-card:hover img {
-  transform: scale(1.1) rotateY(8deg);
+.card-footer span {
+  font-size: 0.9rem;
+  color: var(--green);
 }
 
-/* 🌟 Explore Button */
+/* ===========================
+   BUTTONS
+=========================== */
+/* Remove background box around Explore card */
 .service-card.explore {
-  background: transparent;
-  border: 1.5px solid #00ff88;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  box-shadow: 0 0 30px rgba(0, 255, 100, 0.3);
-}
-.service-card.explore button {
-  background: transparent;
-  border: 2px solid #00ff88;
-  color: #00ff88;
-  font-size: 1.2rem;
-  padding: 15px 30px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-.service-card.explore button:hover {
-  background: #00ff88;
-  color: #000;
-  transform: scale(1.1);
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  backdrop-filter: none !important;
 }
 
-/* 📱 Responsive Design */
-@media (max-width: 1024px) {
+
+.service-card button {
+  padding: 0.55rem 1.4rem;
+  background: transparent;
+  color: var(--green);
+  border: 2px solid var(--green);
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.service-card button:hover {
+  background: var(--green);
+  color: var(--bg-dark);
+  transform: scale(1.08);
+  box-shadow: 0 0 14px rgba(0,255,153,0.6);
+}
+
+.service-card button .dropdown-arrow1 {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.78rem;
+  transition: 0.3s ease;
+}
+
+.service-card button:hover .dropdown-arrow1 {
+  background: var(--bg-dark);
+  color: var(--green);
+}
+
+
+/* ===========================
+   ARROW CIRCLE
+=========================== */
+
+.dropdown-arrow1 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  font-size: 0.75rem;
+  transition: 0.3s ease;
+}
+
+button:hover .dropdown-arrow1 {
+  background: var(--bg-dark);
+  color: var(--green);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 850px) {
   .service-cards {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "large"
-      "small1"
-      "small2"
-      "little-small"
-      "explore";
+    grid-template-columns: 1fr; /* Single column */
   }
-  .service-card.large {
-    max-width: 100%;
+
+  .service-card.explore {
+    grid-column: span 1;
   }
 }
+
 
 /* 🌌 Matrix Section Styling */
 .transform-section {
