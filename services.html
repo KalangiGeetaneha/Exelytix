@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exelytix | AI-Powered Executive Intelligence</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary-color: #00ff80;
+  --secondary-color: #0d0d0d;
+  --text-color: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+  background: radial-gradient(circle at top, #000, #050505 70%);
+  color: var(--text-color);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Matrix canvas (now slightly darker & blurred) */
+canvas#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
+  filter: brightness(0.55) blur(0.8px); /* slightly brighter & softer */
+  pointer-events: none;
+}
+
+/* ===== OUR SERVICES SECTION ===== */
+/* ===== OUR SERVICES SECTION ===== */
+#services {
+  padding: 80px 8%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#services h2 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 15px;
+}
+
+#services p {
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.1rem;
+  max-width: 850px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+/* ===== GRID ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px; /* ✅ reduced spacing between cards */
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 30px;
+}
+
+/* ===== CARD DESIGN ===== */
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 16px;
+  padding: 50px 35px 35px; /* ✅ extra top padding to separate rate/title */
+  text-align: left;
+  max-width: 470px; /* ✅ increased width */
+  min-height: 360px; /* uniform height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 25px rgba(0, 255, 128, 0.05);
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.4);
+}
+
+/* ===== RATE BADGE ===== */
+.rate {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 255, 128, 0.1);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 14px;
+  z-index: 2;
+}
+
+/* ===== READY TO GET STARTED SECTION ===== */
+#get-started {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 8%;
+  position: relative;
+  z-index: 1;
+}
+
+.get-started-container {
+  background: rgba(0, 10, 0, 0.7); /* transparent dark glass look */
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 18px;
+  padding: 60px 40px;
+  max-width: 850px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.1);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.get-started-container:hover {
+  box-shadow: 0 0 35px rgba(0, 255, 128, 0.25);
+  border-color: rgba(0, 255, 128, 0.4);
+}
+
+.get-started-container h2 {
+  color: var(--primary-color);
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px var(--primary-color);
+}
+
+.get-started-container p {
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--primary-color);
+}
+
+/* ===== PRIMARY BUTTON ===== */
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.4);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(0, 255, 128, 0.6);
+}
+
+/* ===== SECONDARY BUTTON ===== */
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 12px rgba(0, 255, 128, 0.6);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .get-started-container {
+    padding: 40px 25px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+  <!-- ====== HEADER / NAVBAR ====== -->
+  <header>
+   <a href="Home.html"> <div class="logo"><img src="logo.png"></div></a>
+
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li class="dropdown">
+         <a href="#company" class="dropdown-link">Company <span class="dropdown-arrow">  ▾  </span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#who-we-are">Who We Are</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+    </ul>
+      </li>
+
+
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-buttons">
+      <a href="contact.html" class="btn-outline">Contact Us <span class="dropdown-arrow1">  ➔  </span></a>
+      <a href="request.html" class="btn-outline1">Request Demo <span class="dropdown-arrow1">  ➔  </span></a>
+    </div>
+  </header>
+
+  <section id="services">
+  <h2>Our Services</h2>
+  <p>
+    AI-powered precision support — from executive assistance to analytics, all tailored for excellence.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="rate">$20/hr</div>
+      <h3>Virtual Executive Support</h3>
+      <p>Comprehensive admin help for scheduling, documentation, and coordination.</p>
+      <ul>
+        <li>Meeting coordination</li>
+        <li>Document management</li>
+        <li>Task organization</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$35/hr</div>
+      <h3>Data Analysis & Reporting</h3>
+      <p>Turn data into actionable insights with AI-driven analysis and reports.</p>
+      <ul>
+        <li>Business intelligence</li>
+        <li>Performance tracking</li>
+        <li>Custom dashboards</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$20/hr</div>
+      <h3>Email & Calendar Management</h3>
+      <p>Streamline communication and scheduling for improved daily efficiency.</p>
+      <ul>
+        <li>Inbox organization</li>
+        <li>Calendar setup</li>
+        <li>Meeting reminders</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$40/hr</div>
+      <h3>Project Coordination</h3>
+      <p>Efficient management ensuring timely delivery and seamless teamwork.</p>
+      <ul>
+        <li>Team coordination</li>
+        <li>Progress tracking</li>
+        <li>Quality review</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$25/hr</div>
+      <h3>Invoice & Records Management</h3>
+      <p>Ensure accuracy in record keeping, invoice processing, and compliance.</p>
+      <ul>
+        <li>Record management</li>
+        <li>Invoice tracking</li>
+        <li>Data organization</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$25/hr</div>
+      <h3>AI Content Creation</h3>
+      <p>AI-powered writing and content strategy to boost your digital presence.</p>
+      <ul>
+        <li>SEO writing</li>
+        <li>Content planning</li>
+        <li>Brand tone consistency</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$30/hr</div>
+      <h3>Social Media with AI Insights</h3>
+      <p>Enhance engagement and reach through AI-driven social media analytics.</p>
+      <ul>
+        <li>Content scheduling</li>
+        <li>Performance tracking</li>
+        <li>Audience insights</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$35/hr</div>
+      <h3>E-Commerce Optimization</h3>
+      <p>Boost store performance using AI for inventory and sales insights.</p>
+      <ul>
+        <li>Sales analysis</li>
+        <li>Inventory optimization</li>
+        <li>Customer insights</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$40/hr</div>
+      <h3>Predictive Forecasting</h3>
+      <p>Predict trends and improve decision-making with AI-based forecasting.</p>
+      <ul>
+        <li>Market analysis</li>
+        <li>Trend prediction</li>
+        <li>Strategic modeling</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$35/hr</div>
+      <h3>Sustainability & ESG</h3>
+      <p>Streamlined ESG compliance and sustainability reporting support.</p>
+      <ul>
+        <li>Compliance tracking</li>
+        <li>ESG metrics</li>
+        <li>Impact reporting</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$40/hr</div>
+      <h3>Financial Management</h3>
+      <p>Accurate bookkeeping, budgeting, and analysis for financial clarity.</p>
+      <ul>
+        <li>Budget tracking</li>
+        <li>Expense analysis</li>
+        <li>Financial reports</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="rate">$15/hr</div>
+      <h3>Travel Support</h3>
+      <p>Complete itinerary planning, booking, and expense organization.</p>
+      <ul>
+        <li>Travel booking</li>
+        <li>Trip planning</li>
+        <li>Expense support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="get-started">
+  <div class="get-started-container">
+    <h2>Ready to Get Started?</h2>
+    <p>
+      Choose the services that best fit your needs, or let us create a custom package 
+      tailored to your requirements.
+    </p>
+    <div class="buttons">
+      <a href="#" class="btn-primary">Book a Consultation →</a>
+      <a href="#" class="btn-secondary">View Pricing Plans</a>
+    </div>
+  </div>
+</section>
+
+  
+<!-- ====== FOOTER SECTION ====== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ===== Left: Brand + Description ===== -->
+    <div class="footer-brand">
+       <div class="footer-brand-row">
+      <img src="logo.png" alt="Exelytix Logo" class="footer-logo" />
+      <h2>Exelytix</h2>
+       </div>
+      <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/ushodharraju"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/exelytix/"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- ===== Middle: Company Links ===== -->
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Product Links ===== -->
+    <div class="footer-links">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="request.html">Request Demo</a></li>
+      </ul>
+    </div>
+
+    
+
+    <!-- ===== Newsletter Section ===== -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Stay updated with the latest AI innovations and insights.</p>
+      <form>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe <span>➔</span></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Exelytix. All rights reserved. 
+      <a href="#">Privacy Policy</a> • 
+      <a href="#">Terms of Service</a> • 
+      <a href="#">Accessibility</a> • 
+      <a href="#">Security</a>
+    </p>
+  </div>
+</footer>
+<script>
+const canvas = document.createElement("canvas");
+canvas.id = "matrix-bg";
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  // darker background trails for better readability
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // dimmer neon green text
+  ctx.fillStyle = "rgba(0, 255, 128, 0.55)";
+  ctx.font = fontSize + "px monospace";
+
+  drops.forEach((y, i) => {
+    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+    ctx.fillText(text, i * fontSize, y * fontSize);
+
+    if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  });
+}
+
+setInterval(drawMatrix, 35);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+
+  </body>
+  </html>
+
+
+ 
