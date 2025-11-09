@@ -8,13 +8,32 @@
 }
 
 /* ===== BODY ===== */
-body {
-  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
-  background-size: cover;
-  color: var(--text-light);
+/* Body */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: var(--font-main);
   scroll-behavior: smooth;
+}
+body {
+  background: radial-gradient(circle at top, #000, #050505 70%);
+  color: var(--text-color);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Matrix canvas (now slightly darker & blurred) */
+canvas#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
+  filter: brightness(0.55) blur(0.8px); /* slightly brighter & softer */
+  pointer-events: none;
 }
 
 /* ===== STICKY HEADER ===== */

@@ -39,7 +39,9 @@ canvas#matrix-bg {
   filter: brightness(0.55) blur(0.8px); /* slightly brighter & softer */
   pointer-events: none;
 }
-
+a{
+    text-decoration: none;
+}
 /* ===== STICKY HEADER ===== */
 header {
   position: sticky;
@@ -272,252 +274,422 @@ li.dropdown:hover .dropdown-menu {
   color: var(--green);
 }
 
-/* ===== PRICING SECTION ===== */
-    .pricing-section {
-      text-align: center;
-      padding: 6rem 10%;
-    }
+/* ============================================
+   ⚡ EXELYTIX – COMPANY PROFILE SECTIONS
+   (Who We Are → CTA)
+============================================ */
 
-    .pricing-section h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: var(--green);
-    }
+/* -------- Section Base -------- */
+.section {
+  padding: 6rem 8%;
+  text-align: center;
+  background: transparent;
+}
 
-    .pricing-cards {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-    }
+.section.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
 
-    .plan {
-      background: rgba(255, 255, 255, 0.05);
+.section.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 2.8rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.4);
+}
+
+.section-sub {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: var(--text-light);
+  opacity: 0.85;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* =======================================
+   WHO WE ARE
+======================================= */
+.who-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.who-text {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.who-text h3 {
+  color: var(--green);
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.who-text p {
+  color: #d2d2d2;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.who-card {
+  flex: 1 1 40%;
+  background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(5, 223, 114, 0.2);
-      border-radius: 15px;
-      padding: 2rem;
-      width: 300px;
-      text-align: left;
-      transition: 0.3s;
-    }
+  border-radius: 12px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 0 18px rgba(0, 255, 153, 0.05);
+  transition: 0.3s ease;
+}
 
-    .plan:hover {
-      border-color: var(--green);
+.who-card:hover {
+  border-color: var(--green);
       transform: translateY(-5px);
       box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
-    }
-
-    .plan h3 {
-      text-align: center;
-      color: var(--green);
-    }
-
-    .plan h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin: 0.5rem 0;
-    }
-
-    .plan ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 1rem;
-    }
-
-    .plan ul li {
-      margin-bottom: 0.5rem;
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .plan ul li::before {
-      content: "✔";
-      color: var(--green);
-      position: absolute;
-      left: 0;
-    }
-
-    .plan a{
-        text-decoration: none;
-    }
-
-    .plan button {
-      display: block;
-      margin: 1.5rem auto 0;
-      padding: 0.6rem 1.5rem;
-      background: var(--green);
-      border: none;
-      border-radius: 20px;
-      color: var(--bg-dark);
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .plan button:hover {
-      background: var(--green-dark);
-    }
-
-    /* ===== INDIVIDUAL SERVICE RATES ===== */
-.rates-section {
-  background: rgba(255, 255, 255, 0.03);
-  text-align: center;
-  padding: 4rem 10%;
 }
 
-.rates-section h2 {
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+ 
+
+}
+
+.feature-item .icon {
   color: var(--green);
-  margin-bottom: 1.5rem;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.3);
 }
 
-.rates-grid {
+.f-title {
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.f-desc {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* =======================================
+   OUR PHILOSOPHY
+======================================= */
+.philosophy {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.phil-card {
+  background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(5, 223, 114, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 280px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.phil-card:hover {
+ border-color: var(--green);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+}
+
+.phil-icon {
+  font-size: 1.8rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.phil-card h4 {
+  color: var(--text-light);
+  margin-bottom: 0.6rem;
+}
+
+.phil-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =======================================
+   OUR EXPERTISE
+======================================= */
+.expert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.expert-card {
+ background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(5, 223, 114, 0.2);
+  border-radius: 12px;
+  padding: 1.8rem 1.2rem;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.expert-card:hover {
+  border-color: var(--green);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+}
+
+.expert-card .icon {
+  font-size: 1.8rem;
+  color: var(--green);
+  margin-bottom: 0.8rem;
+}
+
+.expert-card h5 {
+  color: var(--text-light);
+  margin-bottom: 0.6rem;
+}
+
+.expert-card p {
+  color: #bfbfbf;
+  font-size: 0.95rem;
+}
+
+/* =======================================
+   OUR COMMITMENT
+======================================= */
+.commit-box {
+  margin-top: 3rem;
+}
+
+.commit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.commit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(5, 223, 114, 0.2);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 15px;
+  border: 1px solid rgba(5, 223, 114, 0.1);
+  transition: 0.3s;
+}
+
+.commit-item:hover {
+  border-color: var(--green);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+}
+
+.commit-item .icon {
+  font-size: 1.6rem;
+  color: var(--green);
+  text-shadow: 0 0 6px rgba(5, 223, 114, 0.3);
+}
+
+.commit-item h4 {
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+
+.commit-item p {
+  color: #bbb;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =======================================
+   WHY EXECUTIVES CHOOSE EXELYTIX
+======================================= */
+.why-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.why-list {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
 
-.rate-box {
+.why-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(5, 223, 114, 0.2);
-  border-radius: 15px;
-  width: 220px;
-  padding: 1.2rem 1rem;
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+      border: 1px solid rgba(5, 223, 114, 0.2);
+      border-radius: 10px;
+}
+.why-item:hover{
+    border-color: var(--green);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+
 }
 
-/* subtle glow border + elevation */
-.rate-box:hover {
-  transform: translateY(-8px);
-  border-color: var(--green);
-  box-shadow: 0 0 15px rgba(5, 223, 114, 0.4);
-  background: rgba(5, 223, 114, 0.08);
-}
-
-/* Neon pulse effect */
-.rate-box::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(5, 223, 114, 0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 0;
-}
-
-.rate-box:hover::before {
-  opacity: 1;
-  animation: pulse 1.8s infinite alternate;
-}
-
-/* Slight text glow */
-.rate-box:hover h4 {
+.why-item .bullet {
+  font-size: 1.6rem;
   color: var(--green);
-  text-shadow: 0 0 8px var(--green);
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.5);
 }
 
-.rate-box:hover p {
-  color: #fff;
-  text-shadow: 0 0 10px var(--green);
-}
-
-@keyframes pulse {
-  from { transform: scale(1); opacity: 0.2; }
-  to { transform: scale(1.2); opacity: 0.4; }
-}
-
-.rate-box h4 {
+.why-item h4 {
   color: var(--text-light);
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 0.4rem;
 }
 
-.rate-box p {
+.why-item p {
+  color: #bfbfbf;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.why-visual {
+  flex: 1 1 40%;
+  background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(5, 223, 114, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  box-shadow: 0 0 12px rgba(0, 255, 153, 0.05);
+}
+
+.why-visual:hover{
+   border-color: var(--green);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+}
+.why-visual-content {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.why-highlight {
+  font-size: 1.9rem;
+  font-weight: 800;
   color: var(--green);
-  font-weight: bold;
-  font-size: 1.2rem;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.5);
+}
+
+.why-desc {
+  color: #bfbfbf;
+  max-width: 260px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* =======================================
+   CTA SECTION
+======================================= */
+.cta-box {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+
+.btn-cta,
+.btn-alt {
+  padding: 0.9rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+  font-family: var(--font-main);
+}
+
+.btn-cta {
+  background: var(--green);
+  color: var(--bg-dark);
+  border: none;
+  box-shadow: 0 0 18px rgba(5, 223, 114, 0.25);
+}
+
+.btn-alt {
+  border: 1px solid var(--green);
+  color: var(--green);
+  background: transparent;
+}
+
+.btn-cta:hover {
+  background: var(--green-dark);
+  transform: translateY(-3px);
+}
+
+.btn-alt:hover {
+  color: var(--bg-dark);
+  background: var(--green);
+  transform: translateY(-3px);
+}
+
+/* =======================================
+   RESPONSIVE OPTIMIZATION
+======================================= */
+@media (max-width: 900px) {
+  .who-row,
+  .why-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .who-text,
+  .who-card,
+  .why-list,
+  .why-visual {
+    flex: 1 1 100%;
+  }
+
+  .who-text h3 {
+    text-align: center;
+  }
+
+  .phil-card,
+  .expert-card {
+    width: 100%;
+  }
+
+  .cta-box {
+    flex-direction: column;
+  }
+
+  .btn-cta,
+  .btn-alt {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 
-    /* ===== FAQ SECTION ===== */
-    .faq-section {
-      padding: 4rem 10%;
-    }
-
-    .faq-section h2 {
-      color: var(--green);
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.2rem;
-    }
-
-    .faq {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .faq-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .faq-item h4 {
-      color: var(--green-dark);
-      font-size: 1rem;
-    }
-
-    .faq-item p {
-      margin-top: 0.5rem;
-      color: #ccc;
-      font-size: 1.2rem;
-
-    }
-
-    /* ===== CTA BOX ===== */
-    .cta-box {
-      text-align: center;
-      padding: 3rem;
-      background: rgba(5, 223, 114, 0.1);
-      border-radius: 15px;
-      margin: 4rem auto;
-      max-width: 800px;
-    }
-
-    .cta-box h3 {
-      color: var(--green);
-      font-size: 1.8rem;
-    }
-
-    .cta-box p {
-      color: #ccc;
-      font-size: 1.2rem;
-    }
-
-    .cta-box a {
-      display: inline-block;
-      margin-top: 1rem;
-      background: var(--green);
-      color: var(--bg-dark);
-      padding: 0.7rem 1.5rem;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: 0.3s;
-      font-weight: bold;
-    }
-
-    .cta-box a:hover {
-      background: var(--green-dark);
-    }
 
 /* ===== FOOTER SECTION ===== */
 
@@ -1000,89 +1172,215 @@ li.dropdown:hover .dropdown-menu {
   </div>
 </header>
 
-<!-- ===== PRICING PLANS ===== -->
-  <section class="pricing-section">
-    <h1>Simple, Transparent Pricing</h1>
-    <div class="pricing-cards">
-      <div class="plan">
-        <h3>Basic</h3>
-        <h2>$299/month</h2>
-        <ul>
-          <li>10 hours of admin support</li>
-          <li>Email & calendar management</li>
-          <li>Basic data analysis</li>
-          <li>Document management</li>
-          <li>Standard response (24 hours)</li>
-        </ul>
-       <a href="request.html"> <button >Get Started</button></a>
-      </div>
+<!-- ========== WHO WE ARE ========== -->
+<section id="who-we-are" class="section reveal" aria-labelledby="who-we-are-title">
+  <h2 id="who-we-are-title" class="section-title">Who We Are</h2>
+  <p class="section-sub">
+    Exelytix blends human intelligence with AI precision — empowering leaders to make faster, smarter, and more confident decisions.
+  </p>
 
-      <div class="plan" style="border-color: var(--green); box-shadow: 0 0 10px rgba(5, 223, 114, 0.3);">
-        <h3>Premium</h3>
-        <h2>$599/month</h2>
-        <ul>
-          <li>25 hours of comprehensive support</li>
-          <li>All Basic features</li>
-          <li>AI-powered content creation</li>
-          <li>Project coordination</li>
-          <li>Priority response (12 hours)</li>
-        </ul>
-       <a href="request.html"> <button >Get Started</button></a>
-      </div>
-
-      <div class="plan">
-        <h3>Enterprise</h3>
-        <h2>$1,199/month</h2>
-        <ul>
-          <li>50 hours of premium support</li>
-          <li>Predictive forecasting</li>
-          <li>Dedicated manager</li>
-          <li>Immediate response (4 hours)</li>
-          <li>Custom integrations</li>
-        </ul>
-        <a href="request.html"> <button >Get Started</button></a>
-      </div>
+  <div class="who-row">
+    <div class="who-text">
+      <h3>Pioneers in Executive Intelligence</h3>
+      <p>
+        We help executives cut through complexity with data-driven clarity and seamless technology. Our mission is simple — 
+        to give leaders focus, control, and measurable outcomes through the perfect fusion of human and artificial intelligence.
+      </p>
     </div>
-  </section>
 
-  <!-- ===== INDIVIDUAL SERVICE RATES ===== -->
-  <section class="rates-section">
-    <h2>Individual Service Rates</h2>
-    <div class="rates-grid">
-      <div class="rate-box"><h4>Administrative Support</h4><p>$20/hr</p></div>
-      <div class="rate-box"><h4>Data Analysis</h4><p>$35/hr</p></div>
-      <div class="rate-box"><h4>Project Coordination</h4><p>$40/hr</p></div>
-      <div class="rate-box"><h4>AI Content Creation</h4><p>$25/hr</p></div>
-      <div class="rate-box"><h4>Financial Management</h4><p>$40/hr</p></div>
-      <div class="rate-box"><h4>Travel Support</h4><p>$15/hr</p></div>
-    </div>
-  </section>
+    <aside class="who-card" aria-label="Key strengths">
+      <div class="feature-item">
+        <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+        <div>
+          <div class="f-title">Precision-Driven</div>
+          <div class="f-desc">AI insights and structured execution for sharper outcomes.</div>
+        </div>
+      </div>
 
-  <!-- ===== FAQ ===== -->
-  <section class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <h4>Can I change my plan anytime?</h4>
-        <p>Yes, you can upgrade or downgrade at any time. Changes apply in your next billing cycle.</p>
+      <div class="feature-item">
+        <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <div>
+          <div class="f-title">Built for Innovation</div>
+          <div class="f-desc">Every process evolves — we keep you ahead of change.</div>
+        </div>
       </div>
-      <div class="faq-item">
-        <h4>What happens if I exceed my monthly hours?</h4>
-        <p>Additional hours are billed at standard hourly rates. You’ll be notified before reaching your limit.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Do you offer custom packages?</h4>
-        <p>Yes, we can create custom packages tailored to your business needs.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== CTA ===== -->
-  <div class="cta-box">
-    <h3>Ready to Transform Your Operations?</h3>
-    <p>Start with a free consultation to discuss your needs and find the perfect plan.</p>
-    <a href="request.html">Book Free Consultation →</a>
+      <div class="feature-item">
+        <div class="icon"><i class="fa-solid fa-heart"></i></div>
+        <div>
+          <div class="f-title">Human-First</div>
+          <div class="f-desc">Technology that amplifies people, not replaces them.</div>
+        </div>
+      </div>
+    </aside>
   </div>
+</section>
+
+
+<!-- ========== OUR PHILOSOPHY ========== -->
+<section id="philosophy" class="section reveal" aria-labelledby="philosophy-title">
+  <h2 id="philosophy-title" class="section-title">Our Philosophy</h2>
+  <p class="section-sub">We use disciplined methods and human insight to convert complexity into clarity — enabling leaders to make confident decisions faster.</p>
+
+  <div class="philosophy">
+    <div class="phil-card">
+      <div class="phil-icon"><i class="fa-solid fa-bullseye"></i></div>
+      <h4>Clarity Through Precision</h4>
+      <p>We believe that attention to detail and precise execution create clear strategic advantage for executives.</p>
+    </div>
+
+    <div class="phil-card">
+      <div class="phil-icon"><i class="fa-solid fa-users"></i></div>
+      <h4>Partnership Over Service</h4>
+      <p>We form lasting partnerships — your success is our priority, not a one-off transaction.</p>
+    </div>
+
+    <div class="phil-card">
+      <div class="phil-icon"><i class="fa-solid fa-lightbulb"></i></div>
+      <h4>Innovation with Purpose</h4>
+      <p>Technology must elevate human potential. We build AI with tangible, outcome-led goals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== OUR EXPERTISE ========== -->
+<section id="expertise" class="section reveal" aria-labelledby="expertise-title">
+  <h2 id="expertise-title" class="section-title">Our Expertise</h2>
+  <p class="section-sub">A blended team of practitioners and technologists focused on strategy, execution, and measurable performance.</p>
+
+  <div class="expert-grid">
+    <div class="expert-card">
+      <div class="icon"><i class="fa-solid fa-user-tie"></i></div>
+      <h5>Administrative Excellence</h5>
+      <p>Deep expertise in executive support, project management, and operational coordination.</p>
+    </div>
+
+    <div class="expert-card">
+      <div class="icon"><i class="fa-solid fa-chart-simple"></i></div>
+      <h5>Data Analytics</h5>
+      <p>Advanced analytical capabilities to transform data into actionable business insights.</p>
+    </div>
+
+    <div class="expert-card">
+      <div class="icon"><i class="fa-solid fa-robot"></i></div>
+      <h5>AI Integration</h5>
+      <p>Cutting-edge AI implementation for automation, content, and predictive analysis.</p>
+    </div>
+
+    <div class="expert-card">
+      <div class="icon"><i class="fa-solid fa-globe"></i></div>
+      <h5>Global Perspective</h5>
+      <p>International experience and cultural fluency for cross-border strategy and execution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== OUR COMMITMENT TO YOU ========== -->
+<section id="commitment" class="section reveal" aria-labelledby="commitment-title">
+  <h2 id="commitment-title" class="section-title">Our Commitment to You</h2>
+  <p class="section-sub">We measure success by the outcomes we create for our clients. Expect clarity, accountability, and continuous improvement.</p>
+
+  <div class="commit-box">
+    <div class="commit-grid">
+      <div>
+        <div class="commit-item">
+          <div class="icon"><i class="fa-solid fa-award"></i></div>
+          <div>
+            <h4>Quality Assurance</h4>
+            <p>Every deliverable undergoes rigorous checks to ensure it meets our high standards and your expectations.</p>
+          </div>
+        </div>
+
+        <div class="commit-item">
+          <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div>
+            <h4>Results-Oriented</h4>
+            <p>We design actions to drive measurable outcomes that matter for your business.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="commit-item">
+          <div class="icon"><i class="fa-solid fa-heart"></i></div>
+          <div>
+            <h4>Personalized Service</h4>
+            <p>We take time to understand your needs and provide tailored support that fits your working style.</p>
+          </div>
+        </div>
+
+        <div class="commit-item">
+          <div class="icon"><i class="fa-solid fa-gear"></i></div>
+          <div>
+            <h4>Continuous Innovation</h4>
+            <p>We evolve offerings with new methods and technologies to keep you ahead of change.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY EXECUTIVES CHOOSE EXELYTIX ========== -->
+<section id="why" class="section reveal" aria-labelledby="why-title">
+  <h2 id="why-title" class="section-title">Why Executives Choose Exelytix</h2>
+  <p class="section-sub">Practical, scalable, trusted — designed for leaders who need immediate clarity and long-term advantage.</p>
+
+  <div class="why-row">
+    <div class="why-list">
+      <div class="why-item">
+        <div class="bullet">🎯</div>
+        <div>
+          <h4>Strategic Focus</h4>
+          <p>We handle operational detail so you can lead strategy and vision with confidence.</p>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="bullet">🚀</div>
+        <div>
+          <h4>Scalable Solutions</h4>
+          <p>Services that grow with your needs and increase sophistication as you scale.</p>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="bullet">🔒</div>
+        <div>
+          <h4>Trusted Partnership</h4>
+          <p>We respect confidentiality and operate with the highest standards of discretion.</p>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="bullet">⚡</div>
+        <div>
+          <h4>Immediate Impact</h4>
+          <p>Operational improvements from day one — measurable gains in efficiency and productivity.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-visual">
+      <div class="why-visual-content">
+        <div class="why-highlight">Executive Advantage</div>
+        <div class="why-desc">Practical support, elevated by AI and anchored in proven operational discipline.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== READY TO PARTNER CTA ========== -->
+<section id="cta" class="section reveal" aria-labelledby="cta-title">
+  <h2 id="cta-title" class="section-title">Ready to Partner with Us?</h2>
+  <p class="section-sub">Join the growing community of executives who have discovered the Exelytix advantage.</p>
+
+  <div class="cta-box">
+    <a href="request.html" class="btn-cta">Meet Our Team <span>➜</span></a>
+    <a href="leadership.html" class="btn-alt">Our Leadership</a>
+  </div>
+</section>
+
 
 
 
@@ -1111,8 +1409,8 @@ li.dropdown:hover .dropdown-menu {
     <div class="footer-links">
       <h4>Company</h4>
       <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="whatWeDo.html">About Us</a></li>
+        <li><a href="whoWeAre.html">Who We Are</a></li>
         <li><a href="careers.html">Careers</a></li>
         <li><a href="#leadership">Leadership</a></li>
       </ul>
@@ -1122,8 +1420,8 @@ li.dropdown:hover .dropdown-menu {
     <div class="footer-links">
       <h4>Product</h4>
       <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="request.html">Request Demo</a></li>
       </ul>
     </div>
@@ -1200,6 +1498,26 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
 });
 </script>
+
+<script>
+  // Scroll Reveal Animation
+  const reveals = document.querySelectorAll('.reveal');
+
+  function revealSections() {
+    const trigger = window.innerHeight * 0.85;
+
+    reveals.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < trigger) {
+        section.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('load', revealSections);
+</script>
+
 
 
 
