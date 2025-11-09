@@ -91,7 +91,9 @@ li {
   display: inline-block; /* Makes the dropdown horizontal */
 }
 
-
+a{
+    text-decoration: none;
+}
 
 
 /* Dropdown menu */
@@ -260,252 +262,423 @@ li.dropdown:hover .dropdown-menu {
   color: var(--green);
 }
 
-/* ===== PRICING SECTION ===== */
-    .pricing-section {
-      text-align: center;
-      padding: 6rem 10%;
-    }
 
-    .pricing-section h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: var(--green);
-    }
 
-    .pricing-cards {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-    }
-
-    .plan {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(5, 223, 114, 0.2);
-      border-radius: 15px;
-      padding: 2rem;
-      width: 300px;
-      text-align: left;
-      transition: 0.3s;
-    }
-
-    .plan:hover {
-      border-color: var(--green);
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
-    }
-
-    .plan h3 {
-      text-align: center;
-      color: var(--green);
-    }
-
-    .plan h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin: 0.5rem 0;
-    }
-
-    .plan ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 1rem;
-    }
-
-    .plan ul li {
-      margin-bottom: 0.5rem;
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .plan ul li::before {
-      content: "✔";
-      color: var(--green);
-      position: absolute;
-      left: 0;
-    }
-
-    .plan a{
-        text-decoration: none;
-    }
-
-    .plan button {
-      display: block;
-      margin: 1.5rem auto 0;
-      padding: 0.6rem 1.5rem;
-      background: var(--green);
-      border: none;
-      border-radius: 20px;
-      color: var(--bg-dark);
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .plan button:hover {
-      background: var(--green-dark);
-    }
-
-    /* ===== INDIVIDUAL SERVICE RATES ===== */
-.rates-section {
-  background: rgba(255, 255, 255, 0.03);
+/* ===== CONTACT, FOLLOW & CTA SECTIONS (Dark Theme) ===== */
+section {
   text-align: center;
-  padding: 4rem 10%;
+  padding: 80px 8%;
+  font-family: var(--font-main);
+  color: var(--text-light);
 }
 
-.rates-section h2 {
+/* --- HEADINGS --- */
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
   color: var(--green);
-  margin-bottom: 1.5rem;
-  font-size: 2.2rem;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.4);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
 }
 
-.rates-grid {
+.section-subtitle {
+  color: #ccc;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* --- CONTACT SECTION --- */
+.contact-options {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
 
-.rate-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(5, 223, 114, 0.2);
-  border-radius: 15px;
-  width: 220px;
-  padding: 1.2rem 1rem;
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
+.contact-card {
+  background: rgba(15, 15, 15, 0.85);
+  border: 1px solid rgba(5, 223, 114, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 0 18px rgba(5, 223, 114, 0.08);
+  padding: 35px;
+  flex: 1 1 350px;
+  max-width: 420px;
+  transition: 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.25);
+  border-color: var(--green);
+}
+
+.contact-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.6);
+}
+
+.contact-card h3 {
+  font-size: 1.4rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+    color: var(--green);
+}
+
+.contact-card p {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.contact-card h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--green);
+  text-shadow: 0 0 6px rgba(5, 223, 114, 0.4);
+  margin-bottom: 20px;
+}
+
+/* ===== CONTACT CARD ICONS (Styled for Dark Theme) ===== */
+.contact-card .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(5, 223, 114, 0.08);
+  border: 2px solid rgba(5, 223, 114, 0.4);
+  box-shadow: 0 0 15px rgba(5, 223, 114, 0.15);
+  transition: 0.3s ease;
+}
+
+.contact-card .icon i {
+  font-size: 1.8rem;
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.6);
+}
+
+/* Hover glow effect */
+.contact-card:hover .icon {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.4);
+  border-color: var(--green);
+}
+
+/* ===== INDIVIDUAL ICON COLORS ===== */
+.email-icon {
+  background: rgba(5, 223, 114, 0.07);
+}
+
+.whatsapp-icon {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-icon i {
+  color: #25d366;
+  text-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
+}
+
+.contact-card:hover .whatsapp-icon {
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
+  border-color: #25d366;
+}
+
+
+/* --- BUTTONS --- */
+.btn {
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 12px 26px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-family: var(--font-main);
+}
+
+.black-btn {
+  background: #000;
+  color: var(--green);
+  border: 1px solid var(--green);
+  box-shadow: 0 0 10px rgba(5, 223, 114, 0.25);
+}
+
+.black-btn:hover {
+  background: var(--green);
+  color: #000;
+  box-shadow: 0 0 20px rgba(5, 223, 114, 0.6);
+  transform: translateY(-2px);
+}
+
+.green-btn {
+  background: var(--green);
+  color: #000;
+  border: 1px solid var(--green);
+  box-shadow: 0 0 12px rgba(5, 223, 114, 0.3);
+}
+
+.green-btn:hover {
+  background: #04b860;
+  color: #000;
+  box-shadow: 0 0 22px rgba(5, 223, 114, 0.7);
+  transform: translateY(-2px);
+}
+
+/* --- FOLLOW SECTION --- */
+.follow-section {
+  border-top: 1px solid rgba(5, 223, 114, 0.15);
+  border-bottom: 1px solid rgba(5, 223, 114, 0.15);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.05) inset;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.social-card {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(5, 223, 114, 0.25);
+  border-radius: 14px;
+  width: 160px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+  color: var(--green);
+  box-shadow: 0 0 10px rgba(5, 223, 114, 0.1);
+}
+
+.social-card h4 {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--green);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.4);
+}
+
+/* ===== FOLLOW US SECTION (Dark Neon Style) ===== */
+.follow-section {
+  background: rgba(10, 10, 10, 0.7);
+  border-top: 1px solid rgba(5, 223, 114, 0.15);
+  border-bottom: 1px solid rgba(5, 223, 114, 0.15);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.05) inset;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* --- Each Social Card --- */
+.social-card {
+  background: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(5, 223, 114, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(5, 223, 114, 0.1);
+  width: 160px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.35s ease;
   cursor: pointer;
 }
 
-/* subtle glow border + elevation */
-.rate-box:hover {
-  transform: translateY(-8px);
-  border-color: var(--green);
-  box-shadow: 0 0 15px rgba(5, 223, 114, 0.4);
-  background: rgba(5, 223, 114, 0.08);
-}
-
-/* Neon pulse effect */
-.rate-box::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(5, 223, 114, 0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 0;
-}
-
-.rate-box:hover::before {
-  opacity: 1;
-  animation: pulse 1.8s infinite alternate;
-}
-
-/* Slight text glow */
-.rate-box:hover h4 {
+.social-card i {
+  font-size: 2rem;
   color: var(--green);
-  text-shadow: 0 0 8px var(--green);
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.5);
+  margin-bottom: 10px;
 }
 
-.rate-box:hover p {
-  color: #fff;
-  text-shadow: 0 0 10px var(--green);
-}
-
-@keyframes pulse {
-  from { transform: scale(1); opacity: 0.2; }
-  to { transform: scale(1.2); opacity: 0.4; }
-}
-
-.rate-box h4 {
+.social-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
   color: var(--text-light);
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 1;
+  letter-spacing: 1px;
 }
 
-.rate-box p {
+.social-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: var(--green);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.4);
+}
+
+/* --- Platform-Specific Colors --- */
+.linkedin i {
+  color: #0a66c2;
+  text-shadow: 0 0 12px rgba(10, 102, 194, 0.6);
+}
+
+.facebook i {
+  color: #1877f2;
+  text-shadow: 0 0 12px rgba(24, 119, 242, 0.6);
+}
+
+.instagram i {
+  color: #e1306c;
+  text-shadow: 0 0 12px rgba(225, 48, 108, 0.6);
+}
+
+.twitter i {
+  color: #1da1f2;
+  text-shadow: 0 0 12px rgba(29, 161, 242, 0.6);
+}
+
+/* Hover brightness */
+.social-card:hover i {
+  transform: scale(1.15);
+  filter: brightness(1.3);
+}
+
+
+/* --- CTA SECTION --- */
+.cta-section {
+  background: linear-gradient(180deg, rgba(5, 223, 114, 0.1), rgba(0, 0, 0, 0.9));
+  border: 1px solid rgba(5, 223, 114, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.15);
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 60px 20px;
+}
+
+.cta-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
   color: var(--green);
-  font-weight: bold;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.5);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.cta-section p {
   font-size: 1.2rem;
-  position: relative;
-  z-index: 1;
+  color: #bbb;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.btn.large {
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  border-radius: 14px;
+}
+
+/* ===== BUSINESS HOURS & OUR APPROACH ===== */
+.info-section {
+  padding: 80px 8%;
+  text-align: center;
+  background: rgba(10, 10, 10, 0.7);
+  color: var(--text-light);
+}
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.info-card {
+  background: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(5, 223, 114, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 0 18px rgba(5, 223, 114, 0.08);
+  flex: 1 1 400px;
+  max-width: 600px;
+  padding: 30px 40px;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--green);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.25);
+}
+
+/* HEADER ICON + TITLE */
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-header i {
+  color: var(--green);
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.5);
+}
+
+.info-header h3 {
+  color: var(--green);
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* CONTENT */
+.info-content p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #ccc;
+}
+
+.info-content span {
+  font-weight: bold;
+  color: var(--green);
+}
+
+/* Text paragraphs in Our Approach */
+.info-card p {
+  color: #bbb;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .info-card {
+    text-align: center;
+    padding: 25px;
+  }
+
+  .info-content p {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 
-    /* ===== FAQ SECTION ===== */
-    .faq-section {
-      padding: 4rem 10%;
-    }
 
-    .faq-section h2 {
-      color: var(--green);
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.2rem;
-    }
-
-    .faq {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .faq-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .faq-item h4 {
-      color: var(--green-dark);
-      font-size: 1rem;
-    }
-
-    .faq-item p {
-      margin-top: 0.5rem;
-      color: #ccc;
-      font-size: 1.2rem;
-
-    }
-
-    /* ===== CTA BOX ===== */
-    .cta-box {
-      text-align: center;
-      padding: 3rem;
-      background: rgba(5, 223, 114, 0.1);
-      border-radius: 15px;
-      margin: 4rem auto;
-      max-width: 800px;
-    }
-
-    .cta-box h3 {
-      color: var(--green);
-      font-size: 1.8rem;
-    }
-
-    .cta-box p {
-      color: #ccc;
-      font-size: 1.2rem;
-    }
-
-    .cta-box a {
-      display: inline-block;
-      margin-top: 1rem;
-      background: var(--green);
-      color: var(--bg-dark);
-      padding: 0.7rem 1.5rem;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: 0.3s;
-      font-weight: bold;
-    }
-
-    .cta-box a:hover {
-      background: var(--green-dark);
-    }
 
 /* ===== FOOTER SECTION ===== */
 
@@ -765,89 +938,101 @@ li.dropdown:hover .dropdown-menu {
   </div>
 </header>
 
-<!-- ===== PRICING PLANS ===== -->
-  <section class="pricing-section">
-    <h1>Simple, Transparent Pricing</h1>
-    <div class="pricing-cards">
-      <div class="plan">
-        <h3>Basic</h3>
-        <h2>$299/month</h2>
-        <ul>
-          <li>10 hours of admin support</li>
-          <li>Email & calendar management</li>
-          <li>Basic data analysis</li>
-          <li>Document management</li>
-          <li>Standard response (24 hours)</li>
-        </ul>
-       <a href="request.html"> <button >Get Started</button></a>
-      </div>
+<section class="contact-section">
+  <h2 class="section-title">GET IN TOUCH</h2>
+  <p class="section-subtitle">
+    Ready to transform your operations? We're here to help. Reach out to us through any of the channels below.
+  </p>
 
-      <div class="plan" style="border-color: var(--green); box-shadow: 0 0 10px rgba(5, 223, 114, 0.3);">
-        <h3>Premium</h3>
-        <h2>$599/month</h2>
-        <ul>
-          <li>25 hours of comprehensive support</li>
-          <li>All Basic features</li>
-          <li>AI-powered content creation</li>
-          <li>Project coordination</li>
-          <li>Priority response (12 hours)</li>
-        </ul>
-       <a href="request.html"> <button >Get Started</button></a>
-      </div>
-
-      <div class="plan">
-        <h3>Enterprise</h3>
-        <h2>$1,199/month</h2>
-        <ul>
-          <li>50 hours of premium support</li>
-          <li>Predictive forecasting</li>
-          <li>Dedicated manager</li>
-          <li>Immediate response (4 hours)</li>
-          <li>Custom integrations</li>
-        </ul>
-        <a href="request.html"> <button >Get Started</button></a>
-      </div>
+  <div class="contact-options">
+    <div class="contact-card">
+      <div class="icon email-icon"><i class="fa-solid fa-envelope"></i></div>
+      <h3>EMAIL US</h3>
+      <p>Send us an email and we'll get back to you within 24 hours.</p>
+      <h4>exelytix@gmail.com</h4>
+     <a href="mailto:exelytix@gmail.com">
+ <button class="btn black-btn">SEND EMAIL</button></a>
     </div>
-  </section>
 
-  <!-- ===== INDIVIDUAL SERVICE RATES ===== -->
-  <section class="rates-section">
-    <h2>Individual Service Rates</h2>
-    <div class="rates-grid">
-      <div class="rate-box"><h4>Administrative Support</h4><p>$20/hr</p></div>
-      <div class="rate-box"><h4>Data Analysis</h4><p>$35/hr</p></div>
-      <div class="rate-box"><h4>Project Coordination</h4><p>$40/hr</p></div>
-      <div class="rate-box"><h4>AI Content Creation</h4><p>$25/hr</p></div>
-      <div class="rate-box"><h4>Financial Management</h4><p>$40/hr</p></div>
-      <div class="rate-box"><h4>Travel Support</h4><p>$15/hr</p></div>
+    <div class="contact-card">
+      <div class="icon whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <h3>WHATSAPP</h3>
+      <p>Message us on WhatsApp for quick responses and support.</p>
+      <h4>+91 93929 72245</h4>
+    <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"> <button class="btn green-btn">MESSAGE US</button></a>
     </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <h4>Can I change my plan anytime?</h4>
-        <p>Yes, you can upgrade or downgrade at any time. Changes apply in your next billing cycle.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What happens if I exceed my monthly hours?</h4>
-        <p>Additional hours are billed at standard hourly rates. You’ll be notified before reaching your limit.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Do you offer custom packages?</h4>
-        <p>Yes, we can create custom packages tailored to your business needs.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA ===== -->
-  <div class="cta-box">
-    <h3>Ready to Transform Your Operations?</h3>
-    <p>Start with a free consultation to discuss your needs and find the perfect plan.</p>
-    <a href="request.html">Book Free Consultation →</a>
   </div>
+</section>
+
+<!-- FOLLOW US -->
+<section class="follow-section">
+  <h2 class="section-title">FOLLOW US</h2>
+  <p class="section-subtitle">
+    Stay connected with us on social media for updates, insights, and industry news.
+  </p>
+
+ <div class="social-links">
+   <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><div class="social-card linkedin">
+    <i class="fa-brands fa-linkedin-in"></i>
+    <h4>LINKEDIN</h4>
+  </div></a>
+ <a href="https://www.facebook.com/exelytix"> <div class="social-card facebook">
+    <i class="fa-brands fa-facebook-f"></i>
+    <h4>FACEBOOK</h4>
+  </div></a>
+ <a href="https://www.instagram.com/exelytix/"><div class="social-card instagram">
+    <i class="fa-brands fa-instagram"></i>
+    <h4>INSTAGRAM</h4>
+  </div></a>
+ <a href="https://x.com/exelytix"> <div class="social-card twitter">
+    <i class="fa-brands fa-x-twitter"></i>
+    <h4>TWITTER</h4>
+  </div></a>
+</div>
+
+</section>
+
+<!-- BUSINESS HOURS & OUR APPROACH -->
+<section class="info-section">
+  <div class="info-container">
+
+    <div class="info-card">
+      <div class="info-header">
+        <i class="fa-regular fa-clock"></i>
+        <h3>BUSINESS HOURS</h3>
+      </div>
+      <div class="info-content">
+        <p><strong>Monday - Friday</strong> <span>10:00 AM - 8:00 PM</span></p>
+        <p><strong>Saturday</strong> <span>Closed</span></p>
+        <p><strong>Sunday</strong> <span>Closed</span></p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-header">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>OUR APPROACH</h3>
+      </div>
+      <p>
+        We operate as a fully remote, global team, allowing us to provide comprehensive support to our clients worldwide.
+      </p>
+      <p>
+        Our distributed approach ensures we can match you with the best talent regardless of location,
+        while maintaining the highest standards of service delivery.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- READY TO START -->
+<section class="cta-section">
+  <h2>READY TO GET STARTED?</h2>
+  <p>The best way to understand how Exelytix can transform your operations is through a personalized demo.</p>
+ <a href="request.html"> <button class="btn black-btn large">BOOK YOUR FREE DEMO</button></a>
+</section>
+
 
 
 
@@ -888,7 +1073,7 @@ li.dropdown:hover .dropdown-menu {
       <h4>Product</h4>
       <ul>
         <li><a href="#services">Services</a></li>
-        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="request.html">Request Demo</a></li>
       </ul>
     </div>
