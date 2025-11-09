@@ -28,6 +28,18 @@ body {
   scroll-behavior: smooth;
 }
 
+canvas#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
+  filter: brightness(0.55) blur(0.8px); /* slightly brighter & softer */
+  pointer-events: none;
+}
+
 /* ===== STICKY HEADER ===== */
 header {
   position: sticky;
@@ -479,7 +491,6 @@ section {
 
 /* ===== FOLLOW US SECTION (Dark Neon Style) ===== */
 .follow-section {
-  background: rgba(10, 10, 10, 0.7);
   border-top: 1px solid rgba(5, 223, 114, 0.15);
   border-bottom: 1px solid rgba(5, 223, 114, 0.15);
   box-shadow: 0 0 25px rgba(5, 223, 114, 0.05) inset;
@@ -559,7 +570,6 @@ section {
 
 /* --- CTA SECTION --- */
 .cta-section {
-  background: linear-gradient(180deg, rgba(5, 223, 114, 0.1), rgba(0, 0, 0, 0.9));
   border: 1px solid rgba(5, 223, 114, 0.25);
   border-radius: 16px;
   box-shadow: 0 0 25px rgba(5, 223, 114, 0.15);
@@ -1390,6 +1400,46 @@ section {
       header.classList.remove("scrolled");
     }
   });
+</script>
+
+<script>
+const canvas = document.createElement("canvas");
+canvas.id = "matrix-bg";
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  // darker background trails for better readability
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // dimmer neon green text
+  ctx.fillStyle = "rgba(0, 255, 128, 0.55)";
+  ctx.font = fontSize + "px monospace";
+
+  drops.forEach((y, i) => {
+    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+    ctx.fillText(text, i * fontSize, y * fontSize);
+
+    if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  });
+}
+
+setInterval(drawMatrix, 35);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 </script>
 
 
