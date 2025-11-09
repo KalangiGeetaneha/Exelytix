@@ -1026,6 +1026,289 @@ li.dropdown:hover .dropdown-menu {
   }
 }
 
+/* ===================================================
+   🌐 FULL RESPONSIVE DESIGN — EXELYTIX CAREERS PAGE
+=================================================== */
+
+/* ---------- Large Tablets / Laptops (max-width: 1200px) ---------- */
+@media (max-width: 1200px) {
+  header {
+    padding: 1rem 4%;
+  }
+
+  nav ul {
+    gap: 3rem;
+  }
+
+  .roles-container {
+    gap: 1.5rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .growth-card {
+    max-width: 550px;
+  }
+}
+
+/* ---------- Tablets (max-width: 900px) ---------- */
+@media (max-width: 900px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header-buttons {
+    margin-top: 1rem;
+  }
+
+  .careers-intro h1 {
+    font-size: 2.4rem;
+  }
+
+  .careers-intro p {
+    font-size: 1rem;
+  }
+
+  .growth-card {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  .roles-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .role-card {
+    max-width: 320px;
+  }
+
+  .opportunity-list {
+    width: 90%;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- Hide Navbar Links (max-width: 743px) ---------- */
+@media (max-width: 743px) {
+  nav ul {
+    display: none !important; /* Hide navbar links */
+  }
+
+  header {
+    justify-content: space-between;
+    padding: 0.8rem 5%;
+  }
+
+  header .logo img {
+    height: 60px;
+  }
+
+  .header-buttons {
+    margin-left: auto;
+  }
+}
+
+/* ---------- Mobile (max-width: 600px) ---------- */
+@media (max-width: 600px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  header .logo img {
+    height: 55px;
+  }
+
+  .careers-intro h1 {
+    font-size: 2rem;
+  }
+
+  .careers-intro p {
+    font-size: 0.95rem;
+  }
+
+  .growth-card {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .growth-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .growth-card p {
+    font-size: 0.9rem;
+  }
+
+  .sub-heading {
+    font-size: 1.8rem;
+    margin: 2.5rem 0;
+  }
+
+  .roles-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .role-card {
+    width: 90%;
+    max-width: 350px;
+    padding: 1.6rem;
+  }
+
+  .opportunities-section {
+    padding: 3rem 6%;
+  }
+
+  .opportunities-section h2 {
+    font-size: 2rem;
+  }
+
+  .opportunities-section > p {
+    font-size: 0.95rem;
+  }
+
+  .opportunity-item {
+    padding: 1.3rem 1rem;
+  }
+
+  .opportunity-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .opportunity-item p {
+    font-size: 0.9rem;
+  }
+
+  .stay-connected {
+    padding: 3rem 6%;
+  }
+
+  .stay-connected h2 {
+    font-size: 2rem;
+  }
+
+  .stay-connected p {
+    font-size: 1rem;
+  }
+
+  .resume-btn {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-newsletter {
+    align-items: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-newsletter form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-newsletter input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .footer-newsletter button {
+    width: 60%;
+    max-width: 200px;
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+    text-align: center;
+    padding-top: 1.5rem;
+  }
+}
+
+/* ---------- Extra Small Mobile (max-width: 420px) ---------- */
+@media (max-width: 420px) {
+  .careers-intro h1 {
+    font-size: 1.8rem;
+  }
+
+  .growth-card {
+    padding: 1.2rem;
+  }
+
+  .sub-heading {
+    font-size: 1.6rem;
+  }
+
+  .role-card {
+    padding: 1.2rem;
+  }
+
+  .opportunities-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .stay-connected h2 {
+    font-size: 1.6rem;
+  }
+
+  .stay-connected p {
+    font-size: 0.9rem;
+  }
+
+  .resume-btn {
+    width: 90%;
+  }
+
+  .footer-logo {
+    height: 80px;
+  }
+
+  .footer-brand h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Ultra-Wide Screens (min-width: 1600px) ---------- */
+@media (min-width: 1600px) {
+  body {
+    font-size: 1.1rem;
+  }
+
+  .careers-intro h1 {
+    font-size: 3.2rem;
+  }
+
+  .sub-heading {
+    font-size: 3rem;
+  }
+
+  .growth-card {
+    max-width: 700px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  }
+}
+
+
 
 
 
@@ -1034,9 +1317,7 @@ li.dropdown:hover .dropdown-menu {
 <body>
 
   <header>
-  <div class="logo">
-    <img src="logo.png" alt="Company Logo">
-  </div>
+  <a href="Home.html"> <div class="logo"><img src="logo.png"></div></a>
 
   <nav>
     <ul>
