@@ -900,6 +900,289 @@ section {
   }
 }
 
+/* ===================================================
+   🌐 FULL RESPONSIVE OPTIMIZATION (Exelytix Contact Page)
+=================================================== */
+
+/* ---------- Large Tablets / Laptops (max-width: 1200px) ---------- */
+@media (max-width: 1200px) {
+  header {
+    padding: 1rem 4%;
+  }
+  nav ul {
+    gap: 3rem;
+  }
+  .contact-options,
+  .info-container {
+    gap: 2rem;
+  }
+  .footer-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* ---------- Tablets (max-width: 900px) ---------- */
+@media (max-width: 900px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  nav ul {
+    gap: 2rem;
+  }
+
+  .header-buttons {
+    margin-top: 1rem;
+  }
+
+  .contact-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-card {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .social-card {
+    width: 140px;
+    height: 120px;
+  }
+
+  .info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .cta-section {
+    padding: 50px 5%;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- Hide Navbar Links (max-width: 743px) ---------- */
+@media (max-width: 743px) {
+  nav ul {
+    display: none !important; /* Hide menu links */
+  }
+
+  header {
+    justify-content: space-between;
+    padding: 0.8rem 5%;
+  }
+
+  header .logo img {
+    height: 60px;
+  }
+
+  .header-buttons {
+    margin-left: auto;
+  }
+}
+
+/* ---------- Mobile (max-width: 600px) ---------- */
+@media (max-width: 600px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  header .logo img {
+    height: 55px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .contact-options {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-card {
+    padding: 25px;
+  }
+
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .social-card {
+    width: 80%;
+    max-width: 280px;
+    height: 120px;
+  }
+
+  .info-card {
+    padding: 25px;
+    width: 95%;
+  }
+
+  .info-header {
+    justify-content: center;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn.large {
+    padding: 14px 30px;
+    font-size: 1rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-newsletter {
+    align-items: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+ .footer-newsletter form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-newsletter input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .footer-newsletter button {
+    width: 60%;
+    max-width: 200px;
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+    text-align: center;
+    padding-top: 1.5rem;
+  }
+
+
+}
+
+/* ---------- Small Mobile (max-width: 420px) ---------- */
+@media (max-width: 420px) {
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .contact-card {
+    padding: 20px;
+  }
+
+  .social-card {
+    height: 100px;
+  }
+
+  .info-card {
+    padding: 20px;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 0.9rem;
+  }
+
+  .footer-logo {
+    height: 80px;
+  }
+
+  .footer-brand h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Ultra-Wide Screens (min-width: 1600px) ---------- */
+@media (min-width: 1600px) {
+  body {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .contact-card {
+    max-width: 480px;
+  }
+
+  .social-card {
+    width: 180px;
+    height: 150px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  }
+}
+
+/* ---------- Hide Navbar Links (max-width: 743px) ---------- */
+@media (max-width: 743px) {
+  nav ul {
+    display: none !important; /* Hide navbar links */
+  }
+
+  header {
+    justify-content: space-between;
+    padding: 0.8rem 5%;
+  }
+
+  header .logo img {
+    height: 60px;
+  }
+
+  .header-buttons {
+    margin-left: auto;
+  }
+}
+
 
 
 
@@ -908,9 +1191,7 @@ section {
 <body>
 
   <header>
-  <div class="logo">
-    <img src="logo.png" alt="Company Logo">
-  </div>
+ <a href="Home.html"> <div class="logo"><img src="logo.png"></div></a>
 
   <nav>
     <ul>
