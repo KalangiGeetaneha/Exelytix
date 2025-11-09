@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exelytix | AI-Powered Executive Intelligence</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary-color: #00ff80;
+  --secondary-color: #0d0d0d;
+  --text-color: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+  background: radial-gradient(circle at top, #000, #050505 70%);
+  color: var(--text-color);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Matrix canvas (now slightly darker & blurred) */
+canvas#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
+  filter: brightness(0.55) blur(0.8px); /* slightly brighter & softer */
+  pointer-events: none;
+}
+
+
+    #what-we-do {
+text-align: center;
+padding: 80px 10%;
+border-radius: 16px;
+margin: 60px auto;
+color: var(--text-light);
+}
+
+
+#what-we-do h2 {
+color: var(--green);
+font-size: 2.5rem;
+text-shadow: 0 0 10px var(--green);
+margin-bottom: 15px;
+}
+
+
+#what-we-do h3 {
+font-size: 1.8rem;
+color: var(--green);
+margin: 40px 0 30px;
+text-shadow: 0 0 8px var(--green-dark);
+}
+
+
+.core-capabilities {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 30px;
+}
+
+
+.capability-card {
+background: rgba(10, 10, 10, 0.95);
+border: 1px solid rgba(5, 223, 114, 0.2);
+border-radius: 12px;
+box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+width: 300px;
+padding: 25px;
+transition: all 0.3s ease;
+}
+
+
+.capability-card:hover {
+transform: scale(1.03);
+box-shadow: 0 0 20px rgba(5, 223, 114, 0.5);
+}
+
+
+.capability-card h4 {
+color: var(--green);
+font-size: 1.3rem;
+margin-bottom: 10px;
+text-shadow: 0 0 5px var(--green);
+}
+
+
+.capability-card p {
+color: #baf7d0;
+font-size: 0.95rem;
+margin-bottom: 15px;
+}
+
+
+.capability-card ul {
+list-style: none;
+padding: 0;
+}
+
+
+.capability-card li::before {
+content: '▸ ';
+color: var(--green);
+}
+
+/* ===== HOW WE WORK SECTION ===== */
+#how-we-work {
+  padding: 80px 10%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#how-we-work h2 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 50px;
+}
+
+/* Steps Container */
+.work-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  align-items: start;
+}
+
+/* Each Step Card */
+.step {
+  background: var(--card-bg);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.08);
+  padding: 30px 25px;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.4);
+  border-color: var(--primary-color);
+}
+
+/* Step Number */
+.step-number {
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  line-height: 42px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px var(--primary-color);
+}
+
+/* Headings */
+.step h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px var(--primary-color);
+}
+
+/* Paragraphs */
+.step p {
+  color: var(--text-color);
+  opacity: 0.9;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #how-we-work {
+    padding: 60px 8%;
+  }
+  .step {
+    text-align: center;
+  }
+}
+
+/* ===== SPECIALIZED AREAS SECTION ===== */
+#expertise {
+  padding: 80px 10%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#expertise h2 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 60px;
+}
+
+/* Grid Layout */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+/* Card Styling */
+.expertise-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.08);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.expertise-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.4);
+}
+
+/* Headings */
+.expertise-card h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Paragraphs */
+.expertise-card p {
+  color: var(--text-color);
+  opacity: 0.9;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* List Items */
+.expertise-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.expertise-card li {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin: 6px 0;
+  position: relative;
+  padding-left: 15px;
+}
+
+.expertise-card li::before {
+  content: "▹";
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #expertise {
+    padding: 60px 8%;
+  }
+}
+
+/* ===== EXELYTIX IMPACT SECTION ===== */
+#impact {
+  text-align: center;
+  padding: 80px 10%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 255, 128, 0.08),
+    rgba(0, 255, 255, 0.08),
+    rgba(0, 255, 128, 0.08)
+  );
+  border-top: 1px solid rgba(0, 255, 128, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 128, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+#impact h2 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 15px;
+}
+
+#impact p {
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+.impact-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.stat {
+  text-align: center;
+  width: 200px;
+}
+
+.stat h3 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 12px var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.stat p {
+  font-size: 1rem;
+  opacity: 0.85;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* ===== CTA SECTION ===== */
+#cta {
+  text-align: center;
+  padding: 100px 10%;
+  background: transparent;
+}
+
+#cta h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--primary-color);
+  margin-bottom: 15px;
+}
+
+#cta p {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+/* Buttons */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #000;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #00d972;
+  box-shadow: 0 0 20px var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: #000;
+  box-shadow: 0 0 20px var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .impact-stats {
+    gap: 40px;
+  }
+  .stat h3 {
+    font-size: 2.2rem;
+  }
+  #cta {
+    padding: 80px 6%;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+  <!-- ====== HEADER / NAVBAR ====== -->
+  <header>
+   <a href="Home.html"> <div class="logo"><img src="logo.png"></div></a>
+
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li class="dropdown">
+         <a href="#company" class="dropdown-link">Company <span class="dropdown-arrow">  ▾  </span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#who-we-are">Who We Are</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+    </ul>
+      </li>
+
+
+        <li><a href="#services">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-buttons">
+      <a href="contact.html" class="btn-outline">Contact Us <span class="dropdown-arrow1">  ➔  </span></a>
+      <a href="request.html" class="btn-outline1">Request Demo <span class="dropdown-arrow1">  ➔  </span></a>
+    </div>
+  </header>
+
+  <section id="what-we-do">
+<h2>What We Do</h2>
+<p>We enhance executive operations through smart, data-driven support that blends AI efficiency with human expertise — delivering clarity, control, and operational excellence.</p>
+
+
+<h3>Our Core Capabilities</h3>
+
+
+<div class="core-capabilities">
+<div class="capability-card">
+<h4>AI-Powered Intelligence</h4>
+
+<li>Intelligent content creation</li>
+<li>Automated data analysis</li>
+<li>Predictive forecasting</li>
+<li>Smart workflow automation</li>
+</ul>
+</div>
+
+
+<div class="capability-card">
+<h4>Data-Driven Insights</h4>
+<ul>
+<li>Comprehensive business analytics</li>
+<li>KPI and performance tracking</li>
+<li>Market trend monitoring</li>
+<li>Custom dashboards</li>
+</ul>
+</div>
+
+
+<div class="capability-card">
+<h4>Executive Support Excellence</h4>
+
+<ul>
+<li>Email and calendar management</li>
+<li>Meeting coordination</li>
+<li>Document organization</li>
+<li>Travel planning</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="how-we-work">
+  <h2>How We Work</h2>
+  <div class="work-steps">
+    <div class="step">
+      <span class="step-number">01</span>
+      <h3>Discovery & Assessment</h3>
+      <p>We begin by understanding your goals, challenges, and workflow needs to create the right foundation.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-number">02</span>
+      <h3>Custom Solution Design</h3>
+      <p>Our team crafts tailored, AI-driven strategies that fit your organization’s exact requirements.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-number">03</span>
+      <h3>Implementation & Integration</h3>
+      <p>We integrate smart systems and automation into your environment, ensuring smooth operation.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-number">04</span>
+      <h3>Continuous Optimization</h3>
+      <p>We monitor, refine, and enhance the process to deliver sustained performance and measurable growth.</p>
+    </div>
+  </div>
+</section>
+
+<section id="expertise">
+  <h2>Specialized Areas of Expertise</h2>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <h3>Digital Transformation</h3>
+    
+      <ul>
+        <li>Workflow automation implementation</li>
+        <li>Digital tool integration and training</li>
+        <li>Process reengineering and optimization</li>
+        <li>Change management support</li>
+      </ul>
+    </div>
+
+    <div class="expertise-card">
+      <h3>Strategic Operations</h3>
+      
+      <ul>
+        <li>Project management and coordination</li>
+        <li>Strategic planning support</li>
+        <li>Performance monitoring and reporting</li>
+        <li>Stakeholder communication management</li>
+      </ul>
+    </div>
+
+    <div class="expertise-card">
+      <h3>Compliance & Risk Management</h3>
+      
+      <ul>
+        <li>ESG and sustainability reporting</li>
+        <li>Regulatory compliance monitoring</li>
+        <li>Risk assessment and mitigation</li>
+        <li>Audit preparation and support</li>
+      </ul>
+    </div>
+
+    <div class="expertise-card">
+      <h3>Financial Operations</h3>
+      
+      <ul>
+        <li>Bookkeeping and record management</li>
+        <li>Budget and expense tracking</li>
+        <li>Financial analysis and forecasting</li>
+        <li>Invoice and payment processing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <h2>The Exelytix Impact</h2>
+  <p>
+    Our clients experience transformational improvements in their operational
+    efficiency and strategic focus.
+  </p>
+
+  <div class="impact-stats">
+    <div class="stat">
+      <h3>40%</h3>
+      <p>Average time savings on administrative tasks</p>
+    </div>
+    <div class="stat">
+      <h3>85%</h3>
+      <p>Improvement in data-driven decision making</p>
+    </div>
+    <div class="stat">
+      <h3>95%</h3>
+      <p>Client satisfaction and retention rate</p>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <h2>Ready to Transform Your Operations?</h2>
+  <p>
+    Discover how Exelytix can bring clarity, control, and operational
+    excellence to your business.
+  </p>
+
+  <div class="cta-buttons">
+    <button class="btn-primary">Book a Demo →</button>
+    <button class="btn-outline">View Our Services</button>
+  </div>
+</section>
+
+
+
+
+  
+<!-- ====== FOOTER SECTION ====== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ===== Left: Brand + Description ===== -->
+    <div class="footer-brand">
+       <div class="footer-brand-row">
+      <img src="logo.png" alt="Exelytix Logo" class="footer-logo" />
+      <h2>Exelytix</h2>
+       </div>
+      <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/ushodharraju"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/exelytix/"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- ===== Middle: Company Links ===== -->
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Product Links ===== -->
+    <div class="footer-links">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="request.html">Request Demo</a></li>
+      </ul>
+    </div>
+
+    
+
+    <!-- ===== Newsletter Section ===== -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Stay updated with the latest AI innovations and insights.</p>
+      <form>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe <span>➔</span></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Exelytix. All rights reserved. 
+      <a href="#">Privacy Policy</a> • 
+      <a href="#">Terms of Service</a> • 
+      <a href="#">Accessibility</a> • 
+      <a href="#">Security</a>
+    </p>
+  </div>
+</footer>
+<script>
+const canvas = document.createElement("canvas");
+canvas.id = "matrix-bg";
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  // darker background trails for better readability
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // dimmer neon green text
+  ctx.fillStyle = "rgba(0, 255, 128, 0.55)";
+  ctx.font = fontSize + "px monospace";
+
+  drops.forEach((y, i) => {
+    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+    ctx.fillText(text, i * fontSize, y * fontSize);
+
+    if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  });
+}
+
+setInterval(drawMatrix, 35);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+
+  </body>
+  </html>
+
+
+ 
