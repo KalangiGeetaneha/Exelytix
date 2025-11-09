@@ -8,406 +8,946 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #00ff80;
-      --secondary-color: #0d0d0d;
-      --text-color: #e6e6e6;
-      --card-bg: #121212;
-      --font-main: 'Orbitron', sans-serif;
-    }
+  --bg-dark: #0a0a0a;
+  --green: #05DF72;
+  --green-dark: #45bc81;
+  --text-light: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: var(--font-main);
-    }
+/* ===== BODY ===== */
+body {
+  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-light);
+  margin: 0;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
 
-    body {
-      background: radial-gradient(circle at top, #000, #050505 70%);
-      color: var(--text-color);
-      overflow-x: hidden;
-    }
-
-    /* 3D Matrix background */
-    canvas#matrix-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: black;
-    }
-
-    /* Enhanced Header */
+/* ===== STICKY HEADER ===== */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 3rem;
-  background: rgba(0, 0, 0, 0.85);
-  border-bottom: 1px solid rgba(0, 255, 128, 0.3);
-  box-shadow: 0 0 15px rgba(0, 255, 128, 0.15);
   position: sticky;
   top: 0;
   z-index: 999;
-  backdrop-filter: blur(6px);
-  transition: background 0.4s ease;
-}
-.hero {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
+  align-items: center;
+  padding: 1rem 5%;
+  backdrop-filter: blur(6px);
+   border-bottom: 1px solid rgba(5, 223, 114, 0.15);
+  box-shadow: 0 3px 12px rgba(0, 255, 153, 0.1);
+}
+
+/* ===== LOGO ===== */
+header .logo img {
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+  transition: 0.3s ease;
+}
+header .logo img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== NAVIGATION ===== */
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+nav a:hover {
+  color: var(--green);
+  text-shadow: 0 0 8px var(--green);
+}
+
+/* ========= DROPDOWN ========= */
+* General styles for the navbar */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  position: relative;
+  display: inline-block; /* Makes the dropdown horizontal */
+}
+
+
+
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: flex; /* Use flex for text + arrow alignment */
+  align-items: center; /* Vertically center text and arrow */
+  justify-content: space-between; /* Space between text and arrow */
+  padding: 10px 20px;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Show dropdown on hover */
+li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+  display: block;
+  
+}
+
+/* Dropdown link: ensures arrow + text aligned horizontally */
+.dropdown-link {
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  gap: 0.5rem; /* spacing between text and arrow */
+  cursor: pointer;
+}
+
+/* Arrow inside a white circle */
+.dropdown-arrow {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  min-height: 60vh; /* reduced from 80vh */
-  padding: 1.5rem 1rem; /* less padding */
-  margin: 0 auto;
-  max-width: 900px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff; /* white border circle */
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+/* Hover effect for arrow circle */
+.dropdown-link:hover .dropdown-arrow {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg-dark);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* directly below the parent */
+  left: 0;
+  background: #111;
+  border: 1px solid rgba(0, 255, 153, 0.3); 
+  border-radius: 6px;
+  width: 150px;
+  list-style: none;
+  display: none; /* hidden by default */
+  flex-direction: column;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  padding: 0;
+  margin:0;
+}
+
+/* Show dropdown on hover of the entire dropdown container */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu li {
+  margin: 0;          
+  padding: 0;
+  line-height: 1;
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  display: block;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: 0.25s ease;
+  padding:0.55rem;
+   line-height: 1;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  color: var(--green);
+}
+
+.dropdown-arrow1{
+    display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border:2px solid #00ff99;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
 }
 
 
-
-/* Logo + Brand */
-.logo-container {
+/* ===== HEADER BUTTONS ===== */
+.header-buttons {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 1rem;
 }
 
-.logo-container img {
-  height: 48px;
-  filter: drop-shadow(0 0 8px rgba(0, 255, 128, 0.4));
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.logo-container img:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 12px rgba(0, 255, 128, 0.7));
-}
-
-.brand-name {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #00ff80, #00e0a0, #00ff80);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: neonShift 5s ease infinite;
-  text-shadow: 0 0 10px rgba(0,255,128,0.4);
-}
-
-@keyframes neonShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Navigation Links */
-header nav a {
-  color: var(--text-color);
-  margin: 0 1rem;
+.btn-outline,
+.btn-outline1 {
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
   text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  font-weight: bold;
+  border: 2px solid var(--green);
+  transition: 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-header nav a::after {
+.btn-outline {
+  color: var(--green);
+  background: transparent;
+}
+
+.btn-outline1 {
+  color: var(--green);
+  background-color: rgba(5, 223, 114, 0.25);
+}
+
+.btn-outline:hover,
+.btn-outline1:hover {
+  background: var(--green-dark);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+}
+
+.dropdown-arrow1 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  transition: 0.3s ease;
+}
+
+.btn-outline:hover .dropdown-arrow1,
+.btn-outline1:hover .dropdown-arrow1 {
+  background: var(--bg-dark);
+  color: var(--green);
+}
+
+
+/* ===== HERO SECTION ===== */
+.hero {
+  text-align: center;
+  padding: 8rem 10% 5rem;
+  background: radial-gradient(
+      circle at center,
+      rgba(5, 223, 114, 0.08) 0%,
+      rgba(10, 10, 10, 0.9) 80%
+    ),
+    url("MatrixRain.png") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated light streaks */
+.hero::before {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(5, 223, 114, 0.15),
+    transparent
+  );
+  animation: lightSweep 6s infinite linear;
 }
 
-header nav a:hover {
-  color: var(--primary-color);
-  text-shadow: 0 0 8px rgba(0,255,128,0.5);
+@keyframes lightSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
-header nav a:hover::after {
-  width: 100%;
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.4);
+  margin-bottom: 1rem;
 }
 
-/* Responsive */
+.hero p {
+  font-size: 1.2rem;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #d0d0d0;
+  text-shadow: 0 0 8px rgba(5, 223, 114, 0.15);
+}
+
+
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-    padding: 1.2rem;
+  .hero {
+    padding: 6rem 8% 4rem;
   }
-
-  .brand-name {
-    font-size: 1.5rem;
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1rem;
   }
 }
 
 
     /* Feature Cards Section */
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 4rem 2rem;
-    }
+    /* ===== FEATURES SECTION ===== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+  padding: 5rem 8%;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(5, 223, 114, 0.15);
+  border-bottom: 1px solid rgba(5, 223, 114, 0.15);
+  position: relative;
+  overflow: hidden;
+}
 
-    .feature-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(0, 255, 128, 0.2);
-      border-radius: 20px;
-      width: 250px;
-      text-align: center;
-      padding: 2rem 1rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+/* Subtle grid glow animation */
+.features::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(5, 223, 114, 0.03) 0,
+    rgba(5, 223, 114, 0.03) 2px,
+    transparent 2px,
+    transparent 20px
+  );
+  animation: moveGrid 12s linear infinite;
+  z-index: 0;
+}
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
-    }
+@keyframes moveGrid {
+  from { transform: translate(0, 0); }
+  to { transform: translate(50px, 50px); }
+}
 
-    .feature-card i {
-      font-size: 2.2rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
+/* Each Feature Card */
+.feature-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(0, 255, 128, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.05);
+}
 
-    .feature-card h3 {
-      color: white;
-      margin-bottom: 0.5rem;
-    }
+/* Hover effect */
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(0, 255, 128, 0.6);
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.3);
+}
 
-    .feature-card p {
-      color: #bdbdbd;
-      font-size: 0.9rem;
-    }
+/* Icon styling */
+.feature-card i {
+  font-size: 2.5rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+
+.feature-card:hover i {
+  transform: scale(1.2);
+  text-shadow: 0 0 15px rgba(5, 223, 114, 0.8);
+}
+
+/* Title */
+.feature-card h3 {
+  color: var(--text-light);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Description */
+.feature-card p {
+  color: #bdbdbd;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Add soft neon glow ring effect */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(5,223,114,0.4), transparent, rgba(5,223,114,0.4));
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+/* Responsive tuning */
+@media (max-width: 768px) {
+  .features {
+    padding: 3rem 6%;
+    gap: 1.5rem;
+  }
+  .feature-card {
+    padding: 2rem 1rem;
+  }
+  .feature-card i {
+    font-size: 2rem;
+  }
+  .feature-card h3 {
+    font-size: 1rem;
+  }
+  .feature-card p {
+    font-size: 0.85rem;
+  }
+}
+
 
     /* Demo Form Section */
     /* Enhanced Demo Form */
+/* ===== REQUEST A DEMO SECTION ===== */
 .demo-form {
   position: relative;
-  background: rgba(10, 10, 10, 0.6);
-  border: 1px solid rgba(0, 255, 128, 0.25);
-  border-radius: 20px;
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid rgba(5, 223, 114, 0.25);
+  border-radius: 24px;
   max-width: 650px;
-  margin: 5rem auto;
-  padding: 3rem 2rem;
+  margin: 6rem auto;
+  padding: 3rem 2.5rem;
   text-align: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 25px rgba(0, 255, 128, 0.1),
-              inset 0 0 25px rgba(0, 255, 128, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(5, 223, 114, 0.08),
+              inset 0 0 20px rgba(5, 223, 114, 0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
 }
 
+/* Glow animation border */
+.demo-form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: linear-gradient(120deg, rgba(5,223,114,0.6), transparent, rgba(5,223,114,0.4));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: borderGlow 5s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes borderGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover lift and glow */
 .demo-form:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 35px rgba(0, 255, 128, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 0 45px rgba(5, 223, 114, 0.25);
 }
 
+/* Title */
 .demo-form h2 {
-  color: var(--primary-color);
-  font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--green);
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
   letter-spacing: 1px;
-  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(5, 223, 114, 0.5);
 }
 
+/* Subtitle */
 .demo-form .demo-subtitle {
   color: #aaa;
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-.demo-form .form-group {
-  position: relative;
-  margin-bottom: 1.2rem;
-}
-
+/* Input fields */
 .demo-form input,
 .demo-form textarea {
   width: 100%;
   padding: 1rem;
-  border: 1px solid rgba(0, 255, 128, 0.2);
+  margin-bottom: 1.2rem;
+  border: 1px solid rgba(0, 255, 128, 0.25);
   border-radius: 12px;
-  background: rgba(20, 20, 20, 0.7);
-  color: var(--text-color);
+  background: rgba(20, 20, 20, 0.85);
+  color: var(--text-light);
+  font-family: var(--font-main);
   font-size: 0.95rem;
   outline: none;
-  transition: border 0.3s, box-shadow 0.3s, background 0.3s;
+  transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .demo-form input:focus,
 .demo-form textarea:focus {
-  border: 1px solid var(--primary-color);
-  box-shadow: 0 0 10px rgba(0, 255, 128, 0.4);
-  background: rgba(25, 25, 25, 0.9);
+  border-color: var(--green);
+  box-shadow: 0 0 12px rgba(5, 223, 114, 0.4);
+  background: rgba(25, 25, 25, 0.95);
 }
 
+/* Button */
 .demo-form button {
-  background: linear-gradient(90deg, #00ff80, #00cc66);
-  color: black;
+  background: linear-gradient(90deg, #05DF72, #00cc66);
+  color: var(--bg-dark);
   padding: 1rem 2.5rem;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .demo-form button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 255, 128, 0.4);
+  transform: scale(1.07);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.5);
 }
 
-/* Decorative neon edge */
-.demo-form::before {
+/* Floating glow effect inside */
+.demo-form::after {
   content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(5,223,114,0.08) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Make elements sit above the glow */
+.demo-form * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .demo-form {
+    margin: 4rem 1.2rem;
+    padding: 2.2rem 1.5rem;
+  }
+
+  .demo-form h2 {
+    font-size: 1.8rem;
+  }
+
+  .demo-form input,
+  .demo-form textarea {
+    font-size: 0.9rem;
+  }
+
+  .demo-form button {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+
+/* ===== HELP SECTION ===== */
+.help-section {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(5, 223, 114, 0.25);
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--text-light);
+  font-family: var(--font-main);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.08);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Decorative glow border */
+.help-section::before {
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 20px;
   padding: 2px;
-  background: linear-gradient(45deg, transparent, rgba(0,255,128,0.2), transparent);
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
+  background: linear-gradient(135deg, rgba(5, 223, 114, 0.5), transparent, rgba(5, 223, 114, 0.5));
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
+  opacity: 0.5;
   pointer-events: none;
 }
 
-      
-    .demo-form input,
-    .demo-form textarea {
-      width: 100%;
-      padding: 0.9rem;
-      margin: 0.7rem 0;
-      border: none;
-      border-radius: 10px;
-      background: #1a1a1a;
-      color: var(--text-color);
-      outline: none;
-    }
+/* Hover effect */
+.help-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px rgba(5, 223, 114, 0.2);
+}
 
-    .demo-form button {
-      background: var(--primary-color);
-      color: black;
-      padding: 0.9rem 2rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
-      transition: 0.3s;
-    }
+/* Title */
+.help-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.5);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
 
-    .demo-form button:hover {
-      background: #00cc66;
-      transform: scale(1.05);
-    }
+/* Subtitle */
+.help-section p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
 
-    /* Footer */
-    footer {
-      background: #000;
-      color: var(--text-color);
-      padding: 3rem 2rem;
-      border-top: 1px solid rgba(0, 255, 128, 0.2);
-    }
+/* Contact info layout */
+.contact-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+}
 
-    footer .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 2rem;
-    }
+.contact-info p {
+  font-size: 1rem;
+  color: var(--text-light);
+}
 
-    footer h3 {
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
+.contact-info a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-    footer ul {
-      list-style: none;
-    }
+.contact-info a:hover {
+  text-shadow: 0 0 8px var(--green);
+  color: #00ff99;
+}
 
-    footer ul li a {
-      color: var(--text-color);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  .help-section {
+    padding: 2rem 1.5rem;
+    margin: 3rem 1rem;
+  }
 
-    footer ul li a:hover {
-      color: var(--primary-color);
-    }
+  .help-section h2 {
+    font-size: 1.5rem;
+  }
 
-    footer .socials i {
-      margin: 0 0.5rem;
-      font-size: 1.2rem;
-      color: var(--primary-color);
-      transition: 0.3s;
-    }
+  .contact-info {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
 
-    footer .socials i:hover {
-      color: white;
-    }
 
-    .copyright {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: #888;
-    }
 
-    @media (max-width: 768px) {
-      .features {
-        flex-direction: column;
-        align-items: center;
-      }
-      header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-    .socials a {
-  color: var(--primary-color);
-  margin-right: 1rem;
-  font-size: 1.4rem;
-  transition: all 0.3s ease;
+  /* ===== FOOTER SECTION ===== */
+
+.footer {
+  background: #0a0a0a;
+  padding-top: 5rem; /* space for underline */
+  border-top: 4px solid;
+  border-image-source: linear-gradient(
+    90deg,
+    rgba(5, 223, 114, 0) 0%,
+    #05DF72 50%,
+    rgba(5, 223, 114, 0) 100%
+  );
+  border-image-slice: 1;
+  padding: 4rem 5% 2rem;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Row for logo + text */
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Keep the rest vertically stacked */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+}
+
+.footer-brand h2 {
+  color: var(--green);
+  margin: 0.5rem 0 1rem;
+  font-size: 2.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+/* Social Media Icons Wrapper */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Each Icon Circle */
+.footer-socials a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid var(--green);
+  border-radius: 50%;
+
+  color: var(--green);
+  font-size: 1.2rem;
+
+  transition: 0.3s ease;
   text-decoration: none;
 }
 
-.socials a:hover {
+/* Hover Effects: Glow + Scale */
+.footer-socials a:hover {
+  background: var(--green);
+  color: var(--bg-dark);
+
+  box-shadow: var(--green);
+
+  transform: scale(1.15);
+}
+
+
+/* Footer Links */
+.footer-links h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+/* Newsletter Section */
+.footer-newsletter h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-newsletter p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.footer-newsletter form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(0, 255, 153, 0.4);
+  border-radius: 20px;
+  background: #111;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-newsletter input::placeholder {
+  color: #777;
+}
+
+.footer-newsletter button {
+  background: var(--green);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-newsletter button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(0, 255, 153, 0.1);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.footer-bottom a {
+  color: var(--green);
+  text-decoration: none;
+  margin: 0 0.3rem;
+  transition: 0.3s;
+}
+
+.footer-bottom a:hover {
   color: #fff;
-  text-shadow: 0 0 10px var(--primary-color);
-  transform: scale(1.2);
 }
 
   </style>
 </head>
 <body>
 
-  <canvas id="matrix-bg"></canvas>
+   <!-- ====== HEADER / NAVBAR ====== -->
+  <header>
+   <a href="Home.html"> <div class="logo"><img src="logo.png"></div></a>
 
-<header>
-  <div class="logo-container">
-    <img src="logo.png" alt="Exelytix Logo">
-    <span class="brand-name">Exelytix</span>
-  </div>
-  <nav>
-    <a href="Home.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li class="dropdown">
+         <a href="#company" class="dropdown-link">Company <span class="dropdown-arrow">  ▾  </span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#who-we-are">Who We Are</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+    </ul>
+      </li>
+
+
+        <li><a href="#services">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-buttons">
+      <a href="contact.html" class="btn-outline">Contact Us <span class="dropdown-arrow1">  ➔  </span></a>
+      <a href="request.html" class="btn-outline1">Request Demo <span class="dropdown-arrow1">  ➔  </span></a>
+    </div>
+  </header>
+
+
 <section class="hero">
 <h1>Book Your Personalized Demo</h1>
     <p>Experience the future of administrative intelligence. Schedule your tailored demo and explore how Exelytix can optimize your executive workflows.</p>
@@ -450,81 +990,80 @@ header nav a:hover::after {
     </form>
   </section>
 
-  <footer>
-    <div class="footer-container">
-      <div>
-        <h3>Exelytix</h3>
-        <p>Empowering executives with AI-driven intelligence for the future of work.</p>
-        <div class="socials">
-  <a href="https://x.com/ushodharraju" target="_blank" aria-label="Twitter">
-    <i class="fab fa-twitter"></i>
-  </a>
-  <a href="https://www.linkedin.com/company/exelytix" target="_blank" aria-label="LinkedIn">
-    <i class="fab fa-linkedin"></i>
-  </a>
-  <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0" target="_blank" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-  <a href="https://www.instagram.com/exelytix" target="_blank" aria-label="Instagram">
-    <i class="fab fa-instagram"></i>
-  </a>
-</div>
+  <section class="help-section">
+  <h2>QUESTIONS? WE’RE HERE TO HELP</h2>
+  <p>
+    If you have any questions or need immediate assistance, don’t hesitate to reach out to us directly.
+  </p>
+  <div class="contact-info">
+    <p><strong>Email:</strong> <a href="mailto:exelytix@gmail.com">exelytix@gmail.com</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0">+91 93929 72245</a></p>
+  </div>
+</section>
 
-      </div>
-      <div>
-        <h3>Company</h3>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Who We Are</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Leadership</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Product</h3>
-        <ul>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Request Demo</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Newsletter</h3>
-        <p>Stay updated with the latest AI innovations and insights.</p>
-        <input type="email" placeholder="your@email.com" style="padding:0.7rem;border-radius:10px;border:none;width:80%;margin-top:0.5rem;">
+
+  <!-- ====== FOOTER SECTION ====== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ===== Left: Brand + Description ===== -->
+    <div class="footer-brand">
+       <div class="footer-brand-row">
+      <img src="logo.png" alt="Exelytix Logo" class="footer-logo" />
+      <h2>Exelytix</h2>
+       </div>
+      <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/ushodharraju"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/exelytix/"><i class="fa-brands fa-instagram"></i></a>
       </div>
     </div>
-    <p class="copyright">© 2025 Exelytix. All rights reserved. <a href="#" style="color:var(--primary-color)">Privacy Policy</a></p>
-  </footer>
 
-  <!-- Matrix Effect Background -->
-  <script>
-    const canvas = document.getElementById('matrix-bg');
-    const ctx = canvas.getContext('2d');
+    <!-- ===== Middle: Company Links ===== -->
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+      </ul>
+    </div>
 
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+    <!-- ===== Product Links ===== -->
+    <div class="footer-links">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="request.html">Request Demo</a></li>
+      </ul>
+    </div>
 
-    const letters = '01EXELYTIXAI'.split('');
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
+    <!-- ===== Newsletter Section ===== -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Stay updated with the latest AI innovations and insights.</p>
+      <form>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe <span>➔</span></button>
+      </form>
+    </div>
 
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  </div>
 
-      ctx.fillStyle = '#00ff80';
-      ctx.font = fontSize + 'px monospace';
+  <div class="footer-bottom">
+    <p>© 2025 Exelytix. All rights reserved. 
+      <a href="#">Privacy Policy</a> • 
+      <a href="#">Terms of Service</a> • 
+      <a href="#">Accessibility</a> • 
+      <a href="#">Security</a>
+    </p>
+  </div>
+</footer>
 
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-    setInterval(draw, 35);
-  </script>
+  
 </body>
 </html>
