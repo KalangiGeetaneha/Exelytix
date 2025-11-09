@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exelytix | AI-Powered Executive Intelligence</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<style>
+   :root {
+  --bg-dark: #0a0a0a;
+  --green: #05DF72;
+  --green-dark: #45bc81;
+  --text-light: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
+
+/* ===== BODY ===== */
+body {
+  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-light);
+  margin: 0;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+
+/* ===== STICKY HEADER ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
+  align-items: center;
+  padding: 1rem 5%;
+  backdrop-filter: blur(6px);
+   border-bottom: 1px solid rgba(5, 223, 114, 0.15);
+  box-shadow: 0 3px 12px rgba(0, 255, 153, 0.1);
+}
+
+/* ===== LOGO ===== */
+header .logo img {
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+  transition: 0.3s ease;
+}
+header .logo img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== NAVIGATION ===== */
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+nav a:hover {
+  color: var(--green);
+  text-shadow: 0 0 8px var(--green);
+}
+
+/* ========= DROPDOWN ========= */
+* General styles for the navbar */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  position: relative;
+  display: inline-block; /* Makes the dropdown horizontal */
+}
+
+
+
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: flex; /* Use flex for text + arrow alignment */
+  align-items: center; /* Vertically center text and arrow */
+  justify-content: space-between; /* Space between text and arrow */
+  padding: 10px 20px;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Show dropdown on hover */
+li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+  display: block;
+  
+}
+
+/* Dropdown link: ensures arrow + text aligned horizontally */
+.dropdown-link {
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  gap: 0.5rem; /* spacing between text and arrow */
+  cursor: pointer;
+}
+
+/* Arrow inside a white circle */
+.dropdown-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff; /* white border circle */
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+/* Hover effect for arrow circle */
+.dropdown-link:hover .dropdown-arrow {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg-dark);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* directly below the parent */
+  left: 0;
+  background: #111;
+  border: 1px solid rgba(0, 255, 153, 0.3); 
+  border-radius: 6px;
+  width: 150px;
+  list-style: none;
+  display: none; /* hidden by default */
+  flex-direction: column;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  padding: 0;
+  margin:0;
+}
+
+/* Show dropdown on hover of the entire dropdown container */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu li {
+  margin: 0;          
+  padding: 0;
+  line-height: 1;
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  display: block;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: 0.25s ease;
+  padding:0.55rem;
+   line-height: 1;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  color: var(--green);
+}
+
+.dropdown-arrow1{
+    display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border:2px solid #00ff99;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+
+/* ===== HEADER BUTTONS ===== */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-outline,
+.btn-outline1 {
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--green);
+  transition: 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-outline {
+  color: var(--green);
+  background: transparent;
+}
+
+.btn-outline1 {
+  color: var(--green);
+  background-color: rgba(5, 223, 114, 0.25);
+}
+
+.btn-outline:hover,
+.btn-outline1:hover {
+  background: var(--green-dark);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+}
+
+.dropdown-arrow1 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  transition: 0.3s ease;
+}
+
+.btn-outline:hover .dropdown-arrow1,
+.btn-outline1:hover .dropdown-arrow1 {
+  background: var(--bg-dark);
+  color: var(--green);
+}
+
+
+/* ====== JOIN OUR GROWING TEAM ====== */
+.careers-section {
+  color: var(--text-light);
+  padding: 4rem 5%;
+  text-align: center;
+  font-family: var(--font-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.careers-intro h1 {
+  font-size: 3rem;
+  color: var(--green);
+  text-shadow: 0 0 15px rgba(5, 223, 114, 0.4);
+  margin-bottom: 1rem;
+}
+
+.careers-intro p {
+  font-size: 1.2rem;
+  color: #d8d8d8;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+/* ====== GROWTH CARD ====== */
+.growth-card {
+  border: 1px solid rgba(5, 223, 114, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 650px;
+  margin: 3rem auto 0;
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover animation */
+.growth-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--green);
+  box-shadow: 0 0 30px rgba(5, 223, 114, 0.3);
+}
+
+.growth-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(5, 223, 114, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.growth-card:hover::before {
+  opacity: 1;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+
+.growth-card i {
+  font-size: 2.5rem;
+  color: var(--green);
+  margin-bottom: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.growth-card:hover i {
+  transform: scale(1.15);
+}
+
+.growth-card h2 {
+  color: var(--text-light);
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.growth-card p {
+  color: #ccc;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+/* ====== WHAT WE'RE LOOKING FOR ====== */
+.sub-heading {
+  font-size: 2.5rem;
+  color: var(--green);
+  text-align: center;
+  margin: 4rem 0 3rem;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+.sub-heading::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--green);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--green);
+}
+
+/* Role Cards Layout */
+.roles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding: 0 5%;
+}
+
+/* Role Card Styling */
+.role-card {
+  background: #111;
+  border: 1px solid rgba(5, 223, 114, 0.3);
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 340px;
+  color: var(--text-light);
+  box-shadow: 0 0 20px rgba(5, 223, 114, 0.08);
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effects */
+.role-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--green);
+  box-shadow: 0 0 30px rgba(5, 223, 114, 0.25);
+}
+
+.role-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(5, 223, 114, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 18px;
+  z-index: 0;
+}
+
+.role-card:hover::before {
+  opacity: 1;
+  animation: pulseCard 2s infinite ease-in-out;
+}
+
+@keyframes pulseCard {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+/* Icon Styling */
+.role-card i {
+  font-size: 2.5rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease, color 0.4s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.role-card:hover i {
+  transform: scale(1.2) rotate(8deg);
+  color: var(--green-dark);
+}
+
+/* Headings & Paragraph */
+.role-card h3 {
+  color: var(--green);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.role-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  z-index: 2;
+  position: relative;
+}
+
+/* List Styling */
+/* ===== Refined List Styling for Role Cards ===== */
+.role-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem auto 0;
+  color: #cfcfcf;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 90%;
+  text-align: left;
+  display: inline-block; /* keeps the list centered nicely */
+}
+/* ===== Polished List Styling for Role Cards ===== */
+.role-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.2rem auto 0;
+  font-size: 0.95rem;
+  color: #d6d6d6;
+  max-width: 85%;
+  text-align: left;
+  display: inline-block;
+  line-height: 1.8;
+}
+
+/* List items */
+.role-card ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+/* Custom neon bullet (▸) */
+.role-card ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--green);
+  text-shadow: 0 0 6px rgba(5, 223, 114, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect on each bullet + text */
+.role-card ul li:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+
+.role-card ul li:hover::before {
+  text-shadow: 0 0 12px rgba(5, 223, 114, 1);
+  transform: translateX(5px);
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sub-heading {
+    font-size: 2rem;
+  }
+  .role-card {
+    padding: 1.8rem 1.2rem;
+  }
+  .role-card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ====== UPCOMING OPPORTUNITIES SECTION ====== */
+.opportunities-section {
+  padding: 6rem 5%;
+  text-align: center;
+  background: transparent; /* keeps your matrix background visible */
+  color: var(--text-light);
+  position: relative;
+}
+
+/* Section Heading */
+.opportunities-section h2 {
+  font-size: 2.6rem;
+  color: var(--green);
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.4);
+  position: relative;
+}
+
+.opportunities-section h2::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 3px;
+  background: var(--green);
+  margin: 1rem auto;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--green);
+}
+
+.opportunities-section > p {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  color: #cfcfcf;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Opportunity List Layout */
+.opportunity-list {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Each Opportunity Card */
+.opportunity-item {
+  border: 1px solid rgba(5, 223, 114, 0.25);
+  border-radius: 15px;
+  padding: 1.6rem 2rem;
+  text-align: left;
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.08);
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effect: subtle lift + neon glow */
+.opportunity-item:hover {
+  transform: translateY(-6px);
+  border-color: var(--green);
+  box-shadow: 0 0 30px rgba(5, 223, 114, 0.25);
+  background: rgba(10, 10, 10, 0.95);
+}
+
+/* Glow effect overlay */
+.opportunity-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background: radial-gradient(circle at center, rgba(5, 223, 114, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.opportunity-item:hover::before {
+  opacity: 1;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+/* Title */
+.opportunity-item h3 {
+  font-size: 1.3rem;
+  color: var(--green);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  z-index: 2;
+  position: relative;
+}
+
+/* Description */
+.opportunity-item p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.6;
+  margin: 0;
+  z-index: 2;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* On Hover: slight text glow */
+.opportunity-item:hover p {
+  color: #e6ffe6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .opportunities-section h2 {
+    font-size: 2rem;
+  }
+
+  .opportunity-item {
+    padding: 1.3rem 1.5rem;
+  }
+
+  .opportunity-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .opportunity-item p {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* =====================================
+   STAY CONNECTED SECTION
+===================================== */
+.stay-connected {
+  position: relative;
+  text-align: center;
+  padding: 4rem 5%;
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+/* Soft background glow */
+.stay-connected::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(5, 223, 114, 0.1), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* Envelope icon */
+.stay-connected i {
+  font-size: 3rem;
+  color: var(--green);
+  text-shadow: 0 0 15px rgba(5, 223, 114, 0.8);
+  margin-bottom: 1.2rem;
+  animation: pulseIcon 2.5s infinite ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pulse animation for mail icon */
+@keyframes pulseIcon {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(5, 223, 114, 0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    text-shadow: 0 0 25px rgba(5, 223, 114, 0.9);
+  }
+}
+
+/* Heading */
+.stay-connected h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 12px rgba(5, 223, 114, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.stay-connected h2::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 3px;
+  background: var(--green);
+  margin: 1rem auto;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--green);
+}
+
+/* Description */
+.stay-connected p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ccc;
+  max-width: 750px;
+  margin: 0.5rem auto 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Email text */
+.stay-connected .email {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.stay-connected .email a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.stay-connected .email a:hover {
+  color: #a9ffd2;
+  text-shadow: 0 0 10px rgba(5, 223, 114, 0.8);
+}
+
+/* Button */
+.resume-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  background: var(--green);
+  color: var(--bg-dark);
+  padding: 1rem 2.5rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(5, 223, 114, 0.25);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.resume-btn:hover {
+  background: var(--green-dark);
+  color: #000;
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 25px rgba(5, 223, 114, 0.6);
+}
+
+/* Note */
+.stay-connected .note {
+  font-size: 0.9rem;
+  color: white;
+  margin-top: 2rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stay-connected {
+    padding: 5rem 8%;
+  }
+
+  .stay-connected h2 {
+    font-size: 2.2rem;
+  }
+
+  .stay-connected p {
+    font-size: 1rem;
+  }
+
+  .resume-btn {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== FOOTER SECTION ===== */
+
+.footer {
+  background: #0a0a0a;
+  padding-top: 5rem; /* space for underline */
+  border-top: 4px solid;
+  border-image-source: linear-gradient(
+    90deg,
+    rgba(5, 223, 114, 0) 0%,
+    #05DF72 50%,
+    rgba(5, 223, 114, 0) 100%
+  );
+  border-image-slice: 1;
+  padding: 4rem 5% 2rem;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Row for logo + text */
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Keep the rest vertically stacked */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+}
+
+.footer-brand h2 {
+  color: var(--green);
+  margin: 0.5rem 0 1rem;
+  font-size: 2.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+/* Social Media Icons Wrapper */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Each Icon Circle */
+.footer-socials a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid var(--green);
+  border-radius: 50%;
+
+  color: var(--green);
+  font-size: 1.2rem;
+
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+/* Hover Effects: Glow + Scale */
+.footer-socials a:hover {
+  background: var(--green);
+  color: var(--bg-dark);
+
+  box-shadow: var(--green);
+
+  transform: scale(1.15);
+}
+
+
+/* Footer Links */
+.footer-links h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+/* Newsletter Section */
+.footer-newsletter h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-newsletter p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.footer-newsletter form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(0, 255, 153, 0.4);
+  border-radius: 20px;
+  background: #111;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-newsletter input::placeholder {
+  color: #777;
+}
+
+.footer-newsletter button {
+  background: var(--green);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-newsletter button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(0, 255, 153, 0.1);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.footer-bottom a {
+  color: var(--green);
+  text-decoration: none;
+  margin: 0 0.3rem;
+  transition: 0.3s;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-newsletter form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-newsletter button {
+    width: 100%;
+  }
+}
+
+
+
+
+</style>
+
+<body>
+
+  <header>
+  <div class="logo">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#company" class="dropdown-link">
+          Company <span class="dropdown-arrow">▾</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#who-we-are">Who We Are</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-buttons">
+    <a href="#contact" class="btn-outline">Contact Us <span class="dropdown-arrow1">➔</span></a>
+    <a href="request.html" class="btn-outline1">Request Demo <span class="dropdown-arrow1">➔</span></a>
+  </div>
+</header>
+
+  <!-- ====== CAREERS SECTION ====== -->
+<section id="careers" class="careers-section">
+  <div class="careers-intro">
+    <h1>JOIN OUR GROWING TEAM</h1>
+    <p>
+      We're expanding rapidly and preparing to open exciting opportunities soon.
+    </p>
+  </div>
+
+  <div class="growth-card">
+    <i class="fa-solid fa-chart-line"></i>
+    <h2>WE'RE GROWING FAST!</h2>
+    <p>
+      Be part of our AI-powered revolution in executive intelligence.  
+      Stay tuned for upcoming roles and opportunities.
+    </p>
+  </div>
+</section>
+
+
+  <!-- ====== WHAT WE'RE LOOKING FOR ====== -->
+ <h2 class="sub-heading">WHAT WE'RE LOOKING FOR</h2>
+
+<div class="roles-container">
+
+  <div class="role-card">
+    <i class="fa-solid fa-user-tie"></i>
+    <h3>ADMINISTRATIVE SPECIALISTS</h3>
+    <p>Experts in organization, coordination, and executive support.</p>
+    <ul>
+      <li>Executive assistance</li>
+      <li>Project management</li>
+      <li>Strong communication</li>
+    </ul>
+  </div>
+
+  <div class="role-card">
+    <i class="fa-solid fa-chart-pie"></i>
+    <h3>DATA ANALYSTS</h3>
+    <p>Transforming data into insights that drive business strategy.</p>
+    <ul>
+      <li>Data visualization</li>
+      <li>Analytics tools</li>
+      <li>Critical thinking</li>
+    </ul>
+  </div>
+
+  <div class="role-card">
+    <i class="fa-solid fa-robot"></i>
+    <h3>AI ENTHUSIASTS</h3>
+    <p>Innovators eager to harness AI for smarter, faster decisions.</p>
+    <ul>
+      <li>AI/ML knowledge</li>
+      <li>Automation tools</li>
+      <li>Creative problem-solving</li>
+    </ul>
+  </div>
+
+</div>
+
+
+<!-- ====== UPCOMING OPPORTUNITIES ====== -->
+<section class="opportunities-section">
+  <h2>UPCOMING OPPORTUNITIES</h2>
+  <p>While we don't have open positions today, here are some roles we anticipate opening soon:</p>
+
+  <div class="opportunity-list">
+    <div class="opportunity-item">
+      <h3>SENIOR EXECUTIVE ASSISTANT</h3>
+      <p>Support C-level executives with comprehensive administrative and strategic assistance.</p>
+    </div>
+
+    <div class="opportunity-item">
+      <h3>DATA ANALYTICS SPECIALIST</h3>
+      <p>Transform business data into actionable insights and predictive models.</p>
+    </div>
+
+    <div class="opportunity-item">
+      <h3>AI CONTENT STRATEGIST</h3>
+      <p>Develop and implement AI-powered content strategies for our clients.</p>
+    </div>
+
+    <div class="opportunity-item">
+      <h3>OPERATIONS COORDINATOR</h3>
+      <p>Manage client projects and ensure seamless service delivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== STAY CONNECTED ====== -->
+<section class="stay-connected">
+  <i class="fa-solid fa-envelope"></i>
+  <h2>STAY CONNECTED</h2>
+  <p>
+    Interested in joining our team? Send us your resume and a note about why you'd like to be
+    part of the Exelytix journey.
+  </p>
+
+  <p class="email">Email us at: <a href="mailto:exelytix@gmail.com">exelytix@gmail.com</a></p>
+  <a href="mailto:exelytix@gmail.com?subject=Resume%20Submission%20-%20Exelytix&body=Hello%20Exelytix%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20joining%20your%20team.%20Please%20find%20my%20resume%20attached.%0D%0A%0D%0AThank%20you!" 
+   class="resume-btn">
+   SEND YOUR RESUME ➔
+</a>
+
+  <p class="note">We'll keep your information on file and reach out when relevant positions become available.</p>
+</section>
+
+
+
+
+<!-- ====== FOOTER SECTION ====== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ===== Left: Brand + Description ===== -->
+    <div class="footer-brand">
+       <div class="footer-brand-row">
+      <img src="logo.png" alt="Exelytix Logo" class="footer-logo" />
+      <h2>Exelytix</h2>
+       </div>
+      <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/ushodharraju"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/exelytix/"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- ===== Middle: Company Links ===== -->
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Product Links ===== -->
+    <div class="footer-links">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#demo">Request Demo</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Newsletter Section ===== -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Stay updated with the latest AI innovations and insights.</p>
+      <form>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe <span>➔</span></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Exelytix. All rights reserved. 
+      <a href="#">Privacy Policy</a> • 
+      <a href="#">Terms of Service</a> • 
+      <a href="#">Accessibility</a> • 
+      <a href="#">Security</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+
+
+
+
+</body>
+</html>
