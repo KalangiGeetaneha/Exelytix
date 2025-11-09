@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exelytix | AI-Powered Executive Intelligence</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<style>
+   :root {
+  --bg-dark: #0a0a0a;
+  --green: #05DF72;
+  --green-dark: #45bc81;
+  --text-light: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
+
+/* ===== BODY ===== */
+body {
+  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-light);
+  margin: 0;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+
+/* ===== STICKY HEADER ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg-dark) url("MatrixRain.png") no-repeat center center fixed;
+  align-items: center;
+  padding: 1rem 5%;
+  backdrop-filter: blur(6px);
+   border-bottom: 1px solid rgba(5, 223, 114, 0.15);
+  box-shadow: 0 3px 12px rgba(0, 255, 153, 0.1);
+}
+
+/* ===== LOGO ===== */
+header .logo img {
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+  transition: 0.3s ease;
+}
+header .logo img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== NAVIGATION ===== */
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+nav a:hover {
+  color: var(--green);
+  text-shadow: 0 0 8px var(--green);
+}
+
+/* ========= DROPDOWN ========= */
+* General styles for the navbar */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  position: relative;
+  display: inline-block; /* Makes the dropdown horizontal */
+}
+
+
+
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: flex; /* Use flex for text + arrow alignment */
+  align-items: center; /* Vertically center text and arrow */
+  justify-content: space-between; /* Space between text and arrow */
+  padding: 10px 20px;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Show dropdown on hover */
+li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+  display: block;
+  
+}
+
+/* Dropdown link: ensures arrow + text aligned horizontally */
+.dropdown-link {
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  gap: 0.5rem; /* spacing between text and arrow */
+  cursor: pointer;
+}
+
+/* Arrow inside a white circle */
+.dropdown-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff; /* white border circle */
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+/* Hover effect for arrow circle */
+.dropdown-link:hover .dropdown-arrow {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg-dark);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* directly below the parent */
+  left: 0;
+  background: #111;
+  border: 1px solid rgba(0, 255, 153, 0.3); 
+  border-radius: 6px;
+  width: 150px;
+  list-style: none;
+  display: none; /* hidden by default */
+  flex-direction: column;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  padding: 0;
+  margin:0;
+}
+
+/* Show dropdown on hover of the entire dropdown container */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu li {
+  margin: 0;          
+  padding: 0;
+  line-height: 1;
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  display: block;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: 0.25s ease;
+  padding:0.55rem;
+   line-height: 1;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  color: var(--green);
+}
+
+.dropdown-arrow1{
+    display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border:2px solid #00ff99;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+
+/* ===== HEADER BUTTONS ===== */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-outline,
+.btn-outline1 {
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--green);
+  transition: 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-outline {
+  color: var(--green);
+  background: transparent;
+}
+
+.btn-outline1 {
+  color: var(--green);
+  background-color: rgba(5, 223, 114, 0.25);
+}
+
+.btn-outline:hover,
+.btn-outline1:hover {
+  background: var(--green-dark);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+}
+
+.dropdown-arrow1 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  transition: 0.3s ease;
+}
+
+.btn-outline:hover .dropdown-arrow1,
+.btn-outline1:hover .dropdown-arrow1 {
+  background: var(--bg-dark);
+  color: var(--green);
+}
+
+/* ===== PRICING SECTION ===== */
+    .pricing-section {
+      text-align: center;
+      padding: 6rem 10%;
+    }
+
+    .pricing-section h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--green);
+    }
+
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .plan {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(5, 223, 114, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 300px;
+      text-align: left;
+      transition: 0.3s;
+    }
+
+    .plan:hover {
+      border-color: var(--green);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(5, 223, 114, 0.2);
+    }
+
+    .plan h3 {
+      text-align: center;
+      color: var(--green);
+    }
+
+    .plan h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+
+    .plan ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .plan ul li {
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .plan ul li::before {
+      content: "✔";
+      color: var(--green);
+      position: absolute;
+      left: 0;
+    }
+
+    .plan a{
+        text-decoration: none;
+    }
+
+    .plan button {
+      display: block;
+      margin: 1.5rem auto 0;
+      padding: 0.6rem 1.5rem;
+      background: var(--green);
+      border: none;
+      border-radius: 20px;
+      color: var(--bg-dark);
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .plan button:hover {
+      background: var(--green-dark);
+    }
+
+    /* ===== INDIVIDUAL SERVICE RATES ===== */
+.rates-section {
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  padding: 4rem 10%;
+}
+
+.rates-section h2 {
+  color: var(--green);
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+}
+
+.rates-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.rate-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(5, 223, 114, 0.2);
+  border-radius: 15px;
+  width: 220px;
+  padding: 1.2rem 1rem;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* subtle glow border + elevation */
+.rate-box:hover {
+  transform: translateY(-8px);
+  border-color: var(--green);
+  box-shadow: 0 0 15px rgba(5, 223, 114, 0.4);
+  background: rgba(5, 223, 114, 0.08);
+}
+
+/* Neon pulse effect */
+.rate-box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(5, 223, 114, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.rate-box:hover::before {
+  opacity: 1;
+  animation: pulse 1.8s infinite alternate;
+}
+
+/* Slight text glow */
+.rate-box:hover h4 {
+  color: var(--green);
+  text-shadow: 0 0 8px var(--green);
+}
+
+.rate-box:hover p {
+  color: #fff;
+  text-shadow: 0 0 10px var(--green);
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.2; }
+  to { transform: scale(1.2); opacity: 0.4; }
+}
+
+.rate-box h4 {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.rate-box p {
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+    /* ===== FAQ SECTION ===== */
+    .faq-section {
+      padding: 4rem 10%;
+    }
+
+    .faq-section h2 {
+      color: var(--green);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+    }
+
+    .faq {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-item h4 {
+      color: var(--green-dark);
+    }
+
+    .faq-item p {
+      margin-top: 0.5rem;
+      color: #ccc;
+    }
+
+    /* ===== CTA BOX ===== */
+    .cta-box {
+      text-align: center;
+      padding: 3rem;
+      background: rgba(5, 223, 114, 0.1);
+      border-radius: 15px;
+      margin: 4rem auto;
+      max-width: 800px;
+    }
+
+    .cta-box h3 {
+      color: var(--green);
+      font-size: 1.8rem;
+    }
+
+    .cta-box p {
+      color: #ccc;
+    }
+
+    .cta-box a {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--green);
+      color: var(--bg-dark);
+      padding: 0.7rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .cta-box a:hover {
+      background: var(--green-dark);
+    }
+
+/* ===== FOOTER SECTION ===== */
+
+.footer {
+  background: #0a0a0a;
+  padding-top: 5rem; /* space for underline */
+  border-top: 4px solid;
+  border-image-source: linear-gradient(
+    90deg,
+    rgba(5, 223, 114, 0) 0%,
+    #05DF72 50%,
+    rgba(5, 223, 114, 0) 100%
+  );
+  border-image-slice: 1;
+  padding: 4rem 5% 2rem;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Row for logo + text */
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Keep the rest vertically stacked */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+}
+
+.footer-brand h2 {
+  color: var(--green);
+  margin: 0.5rem 0 1rem;
+  font-size: 2.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+/* Social Media Icons Wrapper */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Each Icon Circle */
+.footer-socials a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid var(--green);
+  border-radius: 50%;
+
+  color: var(--green);
+  font-size: 1.2rem;
+
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+/* Hover Effects: Glow + Scale */
+.footer-socials a:hover {
+  background: var(--green);
+  color: var(--bg-dark);
+
+  box-shadow: var(--green);
+
+  transform: scale(1.15);
+}
+
+
+/* Footer Links */
+.footer-links h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+/* Newsletter Section */
+.footer-newsletter h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-newsletter p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.footer-newsletter form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(0, 255, 153, 0.4);
+  border-radius: 20px;
+  background: #111;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-newsletter input::placeholder {
+  color: #777;
+}
+
+.footer-newsletter button {
+  background: var(--green);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-newsletter button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(0, 255, 153, 0.1);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.footer-bottom a {
+  color: var(--green);
+  text-decoration: none;
+  margin: 0 0.3rem;
+  transition: 0.3s;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-newsletter form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-newsletter button {
+    width: 100%;
+  }
+}
+
+
+
+
+</style>
+
+<body>
+
+  <header>
+  <div class="logo">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#company" class="dropdown-link">
+          Company <span class="dropdown-arrow">▾</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#who-we-are">Who We Are</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#services">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-buttons">
+    <a href="#contact" class="btn-outline">Contact Us <span class="dropdown-arrow1">➔</span></a>
+    <a href="request.html" class="btn-outline1">Request Demo <span class="dropdown-arrow1">➔</span></a>
+  </div>
+</header>
+
+<!-- ===== PRICING PLANS ===== -->
+  <section class="pricing-section">
+    <h1>Simple, Transparent Pricing</h1>
+    <div class="pricing-cards">
+      <div class="plan">
+        <h3>Basic</h3>
+        <h2>$299/month</h2>
+        <ul>
+          <li>10 hours of admin support</li>
+          <li>Email & calendar management</li>
+          <li>Basic data analysis</li>
+          <li>Document management</li>
+          <li>Standard response (24 hours)</li>
+        </ul>
+       <a href="request.html"> <button >Get Started</button></a>
+      </div>
+
+      <div class="plan" style="border-color: var(--green); box-shadow: 0 0 10px rgba(5, 223, 114, 0.3);">
+        <h3>Premium</h3>
+        <h2>$599/month</h2>
+        <ul>
+          <li>25 hours of comprehensive support</li>
+          <li>All Basic features</li>
+          <li>AI-powered content creation</li>
+          <li>Project coordination</li>
+          <li>Priority response (12 hours)</li>
+        </ul>
+       <a href="request.html"> <button >Get Started</button></a>
+      </div>
+
+      <div class="plan">
+        <h3>Enterprise</h3>
+        <h2>$1,199/month</h2>
+        <ul>
+          <li>50 hours of premium support</li>
+          <li>Predictive forecasting</li>
+          <li>Dedicated manager</li>
+          <li>Immediate response (4 hours)</li>
+          <li>Custom integrations</li>
+        </ul>
+        <a href="request.html"> <button >Get Started</button></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INDIVIDUAL SERVICE RATES ===== -->
+  <section class="rates-section">
+    <h2>Individual Service Rates</h2>
+    <div class="rates-grid">
+      <div class="rate-box"><h4>Administrative Support</h4><p>$20/hr</p></div>
+      <div class="rate-box"><h4>Data Analysis</h4><p>$35/hr</p></div>
+      <div class="rate-box"><h4>Project Coordination</h4><p>$40/hr</p></div>
+      <div class="rate-box"><h4>AI Content Creation</h4><p>$25/hr</p></div>
+      <div class="rate-box"><h4>Financial Management</h4><p>$40/hr</p></div>
+      <div class="rate-box"><h4>Travel Support</h4><p>$15/hr</p></div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Can I change my plan anytime?</h4>
+        <p>Yes, you can upgrade or downgrade at any time. Changes apply in your next billing cycle.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What happens if I exceed my monthly hours?</h4>
+        <p>Additional hours are billed at standard hourly rates. You’ll be notified before reaching your limit.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer custom packages?</h4>
+        <p>Yes, we can create custom packages tailored to your business needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-box">
+    <h3>Ready to Transform Your Operations?</h3>
+    <p>Start with a free consultation to discuss your needs and find the perfect plan.</p>
+    <a href="request.html">Book Free Consultation →</a>
+  </div>
+
+
+
+
+
+<!-- ====== FOOTER SECTION ====== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ===== Left: Brand + Description ===== -->
+    <div class="footer-brand">
+       <div class="footer-brand-row">
+      <img src="logo.png" alt="Exelytix Logo" class="footer-logo" />
+      <h2>Exelytix</h2>
+       </div>
+      <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/ushodharraju"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/exelytix/"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- ===== Middle: Company Links ===== -->
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Product Links ===== -->
+    <div class="footer-links">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="request.html">Request Demo</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Newsletter Section ===== -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Stay updated with the latest AI innovations and insights.</p>
+      <form>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe <span>➔</span></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Exelytix. All rights reserved. 
+      <a href="#">Privacy Policy</a> • 
+      <a href="#">Terms of Service</a> • 
+      <a href="#">Accessibility</a> • 
+      <a href="#">Security</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+
+
+
+
+</body>
+</html>
